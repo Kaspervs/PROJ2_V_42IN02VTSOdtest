@@ -2,110 +2,122 @@ package Schermen;
 
 import java.awt.Color;
 import java.awt.Font;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import javax.swing.JPasswordField;
-
+import logics.LoginLogics;
 import FormElements.MyButton;
 import FormElements.TextFieldSL;
 import Main.DatabaseController;
-
-
-import FormElements.MyButton;
-import FormElements.TextFieldSL;
-
 import Main.Gui;
 
 @SuppressWarnings("serial")
 public class Login extends JPanel {
-
 	private Gui _gui;
+	private LoginLogics logics = new LoginLogics(this);
+	private TextFieldSL username, password;
+	
 	public Login(Gui gui) {
-
-		DatabaseController DC = DatabaseController.getInstance();
-		DC.setDatabase("tdalmaij_db2").setHost("databases.aii.avans.nl").setPassword("Ab12345").setUser("tdalmaij");
-
-		//Hier wat andere code
-
-		ResultSet result = DC.runQuery("SELECT * FROM account");
-		try {
-		while(result.next()) {
-
-		}
-		} catch (SQLException e) {
-		e.printStackTrace();
-		}	
-
 		this._gui = gui;
 		this.setBackground(null);
 		this.setBounds(0, 0, gui.getWidth(), gui.getHeight());
 		
-		//Avans Logo
-		ImageIcon AvansLogo = new ImageIcon(getClass().getResource("/Assets/Images/Avans-logo.png"));
-		JLabel AvansLabel = new JLabel(AvansLogo);
-		AvansLabel.setBounds(20,gui.getHeight() - 21 - AvansLogo.getIconHeight(), AvansLogo.getIconWidth(), AvansLogo.getIconHeight());
-		this.add(AvansLabel);
-		
-		//Java Logo
-		ImageIcon JavaLogo = new ImageIcon(getClass().getResource("/Assets/Images/appbar.language.java.text.png"));
-		JLabel JavaLabel = new JLabel(JavaLogo);
-		JavaLabel.setBounds(gui.getWidth() - JavaLogo.getIconWidth() - 20,gui.getHeight() - 21 - JavaLogo.getIconHeight(), JavaLogo.getIconWidth(), JavaLogo.getIconHeight());
-		this.add(JavaLabel);
-		
-		//Login tekst
-		JLabel loginText = new JLabel("Login");
-		loginText.setForeground(Color.white);
-		loginText.setBounds(426,120,268,55);
-		loginText.setFont(gui.segoeuil());
-		loginText.setFont(new Font(loginText.getFont().getName(), Font.PLAIN, 42));
-		this.add(loginText);
-		
-		//Default avatar
-		ImageIcon avatar = new ImageIcon(getClass().getResource("/Assets/Images/default-avatar.png"));
-		JLabel avatarLabel = new JLabel(avatar);
-		avatarLabel.setBounds(426,180, avatar.getIconWidth(), avatar.getIconHeight());
-		this.add(avatarLabel);
-		
-		//Username Field
-		TextFieldSL usernameField = new TextFieldSL("Username");
-		usernameField.setBounds(536, 180, 260, 30);
-		usernameField.setFont(gui.seguisb());
-		usernameField.setFont(new Font(usernameField.getFont().getName(), Font.BOLD, 12));
-		this.add(usernameField);
-		
-		//Password Field
-
-		JPasswordField passwordField = new JPasswordField("Password");
-		passwordField.setBounds(536, 220, 260, 30);
-		passwordField.setFont(gui.seguisb());
-		passwordField.setFont(new Font(passwordField.getFont().getName(), Font.BOLD, 12));
-		this.add(passwordField);
-		
-		//Create Account Button
-		MyButton createAccBtn = new MyButton("Create account");
-		createAccBtn.setBounds(538, 292, 101, 27);
-		createAccBtn.setFont(gui.seguisb());
-		createAccBtn.setFont(new Font(createAccBtn.getFont().getName(), Font.BOLD, 12));
-		this.add(createAccBtn);
-		
-		//Login Button
+		//Create layout
+		this.add(createAvansLogo());
+		this.add(createJavaLogo());
+		this.add(createLoginTekst());
+		this.add(createDefaultAvatar());
+		username = createUsernameField();
+		password = createPasswordField();
+		this.add(username);
+		this.add(password);
+		this.add(createRegisterButton());
 		this.add(createLoginBtn());
 	}
 	
-	public MyButton createLoginBtn(){
+	public LoginLogics getLogics() {
+		return this.logics;
+	}
+	
+	public Gui getGui() {
+		return this._gui;
+	}
+	
+	public String getUsernameFieldText() {
+		return this.username.getText();
+	}
+	
+	public String getPasswordFieldText() {
+		return this.password.getText();
+	}
+	
+	private MyButton createLoginBtn(){
 		MyButton loginBtn = new MyButton("Login");
 		loginBtn.setBounds(693, 292, 101, 27);
 		loginBtn.setFont(_gui.seguisb());
 		loginBtn.setFont(new Font(loginBtn.getFont().getName(), Font.BOLD, 12));
-		//TODO add click listener
+		loginBtn.setName("loginBtn");
+		loginBtn.addActionListener(logics);
 		return loginBtn;
+	}
+	
+	private MyButton createRegisterButton(){
+		MyButton createAccBtn = new MyButton("Create account");
+		createAccBtn.setBounds(538, 292, 101, 27);
+		createAccBtn.setFont(_gui.seguisb());
+		createAccBtn.setFont(new Font(createAccBtn.getFont().getName(), Font.BOLD, 12));
+		//TODO add click listener
+		return createAccBtn;
+	}
+	
+	private TextFieldSL createPasswordField() {
+		TextFieldSL passwordField = new TextFieldSL("Password");
+		passwordField.setBounds(536, 220, 260, 30);
+		passwordField.setFont(_gui.seguisb());
+		passwordField.setFont(new Font(passwordField.getFont().getName(), Font.BOLD, 12));
+		return passwordField;
+	}
+	
+	private TextFieldSL createUsernameField() {
+		TextFieldSL usernameField = new TextFieldSL("Username");
+		usernameField.setBounds(536, 180, 260, 30);
+		usernameField.setFont(_gui.seguisb());
+		usernameField.setFont(new Font(usernameField.getFont().getName(), Font.BOLD, 12));
+		return usernameField;
+	}
+	
+	private JLabel createDefaultAvatar() {
+		ImageIcon avatar = new ImageIcon(getClass().getResource("/Assets/Images/default-avatar.png"));
+		JLabel avatarLabel = new JLabel(avatar);
+		avatarLabel.setBounds(426,180, avatar.getIconWidth(), avatar.getIconHeight());	
+		return avatarLabel;
+	}
+	
+	private JLabel createJavaLogo() {
+		ImageIcon JavaLogo = new ImageIcon(getClass().getResource("/Assets/Images/appbar.language.java.text.png"));
+		JLabel JavaLabel = new JLabel(JavaLogo);
+		JavaLabel.setBounds(_gui.getWidth() - JavaLogo.getIconWidth() - 20,_gui.getHeight() - 21 - JavaLogo.getIconHeight(), JavaLogo.getIconWidth(), JavaLogo.getIconHeight());
+		return JavaLabel;
+	}
+	
+	private JLabel createAvansLogo() {
+		ImageIcon AvansLogo = new ImageIcon(getClass().getResource("/Assets/Images/Avans-logo.png"));
+		JLabel AvansLabel = new JLabel(AvansLogo);
+		AvansLabel.setBounds(20,_gui.getHeight() - 21 - AvansLogo.getIconHeight(), AvansLogo.getIconWidth(), AvansLogo.getIconHeight());
+		return AvansLabel;
+	}
+	
+	private JLabel createLoginTekst() {
+		JLabel loginText = new JLabel("Login");
+		loginText.setForeground(Color.white);
+		loginText.setBounds(426,120,268,55);
+		loginText.setFont(_gui.segoeuil());
+		loginText.setFont(new Font(loginText.getFont().getName(), Font.PLAIN, 42));
+		return loginText;
 	}
 
 }

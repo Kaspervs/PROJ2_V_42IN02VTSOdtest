@@ -1,12 +1,16 @@
 package Schermen;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Rectangle;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import FormElements.ColoredRectangle;
 import FormElements.MyButton;
+import FormElements.ScrollField;
 import Main.Gui;
 
 @SuppressWarnings("serial")

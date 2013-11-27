@@ -28,11 +28,6 @@ public class ButtonListners implements ActionListener  {
 				this.main.getGUI().showMessage("Dit is een test bericht die eigenlijk veel te lang is voor een logout message, maar puur bedoelt is om wordwrap te testen!", "Mededeling");
 				break;
 		}
-		//Close button
-		if(source.getName() == "CloseFrameButton") {
-			//this.main.getGUI().dispatchEvent(new WindowEvent(this.main.getGUI(), WindowEvent.WINDOW_CLOSING));
-			frame.dispose();
-		}
 	}
 
 }

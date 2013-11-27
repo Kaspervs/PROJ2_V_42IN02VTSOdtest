@@ -2,9 +2,6 @@ package Schermen;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -13,7 +10,6 @@ import javax.swing.JPasswordField;
 import logics.LoginLogics;
 import FormElements.MyButton;
 import FormElements.TextFieldSL;
-import Main.DatabaseController;
 import Main.Gui;
 
 @SuppressWarnings("serial")

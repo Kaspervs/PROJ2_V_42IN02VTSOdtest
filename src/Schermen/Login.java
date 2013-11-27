@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 import FormElements.MyButton;
 import FormElements.TextFieldSL;
@@ -73,7 +74,7 @@ public class Login extends JPanel {
 		this.add(usernameField);
 		
 		//Password Field
-		TextFieldSL passwordField = new TextFieldSL("Password");
+		JPasswordField passwordField = new JPasswordField("Password");
 		passwordField.setBounds(536, 220, 260, 30);
 		passwordField.setFont(gui.seguisb());
 		passwordField.setFont(new Font(passwordField.getFont().getName(), Font.BOLD, 12));

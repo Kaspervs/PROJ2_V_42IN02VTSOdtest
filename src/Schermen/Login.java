@@ -2,17 +2,26 @@ package Schermen;
 
 import java.awt.Color;
 import java.awt.Font;
+<<<<<<< HEAD
 import java.sql.ResultSet;
 import java.sql.SQLException;
+=======
+>>>>>>> origin/Thoma
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+<<<<<<< HEAD
 import javax.swing.JPasswordField;
 
 import FormElements.MyButton;
 import FormElements.TextFieldSL;
 import Main.DatabaseController;
+=======
+
+import FormElements.MyButton;
+import FormElements.TextFieldSL;
+>>>>>>> origin/Thoma
 import Main.Gui;
 
 @SuppressWarnings("serial")
@@ -20,6 +29,7 @@ public class Login extends JPanel {
 
 	private Gui _gui;
 	public Login(Gui gui) {
+<<<<<<< HEAD
 		DatabaseController DC = DatabaseController.getInstance();
 		DC.setDatabase("tdalmaij_db2").setHost("databases.aii.avans.nl").setPassword("Ab12345").setUser("tdalmaij");
 
@@ -36,6 +46,8 @@ public class Login extends JPanel {
 
 		
 		
+=======
+>>>>>>> origin/Thoma
 		this._gui = gui;
 		this.setBackground(null);
 		this.setBounds(0, 0, gui.getWidth(), gui.getHeight());
@@ -74,7 +86,11 @@ public class Login extends JPanel {
 		this.add(usernameField);
 		
 		//Password Field
+<<<<<<< HEAD
 		JPasswordField passwordField = new JPasswordField("Password");
+=======
+		TextFieldSL passwordField = new TextFieldSL("Password");
+>>>>>>> origin/Thoma
 		passwordField.setBounds(536, 220, 260, 30);
 		passwordField.setFont(gui.seguisb());
 		passwordField.setFont(new Font(passwordField.getFont().getName(), Font.BOLD, 12));

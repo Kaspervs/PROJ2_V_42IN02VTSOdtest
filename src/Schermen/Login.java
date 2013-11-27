@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 import logics.LoginLogics;
 import FormElements.MyButton;
@@ -19,7 +20,8 @@ import Main.Gui;
 public class Login extends JPanel {
 	private Gui _gui;
 	private LoginLogics logics = new LoginLogics(this);
-	private TextFieldSL username, password;
+	private TextFieldSL username;
+	JPasswordField password;
 	
 	public Login(Gui gui) {
 		this._gui = gui;
@@ -74,10 +76,11 @@ public class Login extends JPanel {
 		return createAccBtn;
 	}
 	
-	private TextFieldSL createPasswordField() {
-		TextFieldSL passwordField = new TextFieldSL("Password");
+	private JPasswordField createPasswordField() {
+		JPasswordField passwordField = new JPasswordField("Password");
 		passwordField.setBounds(536, 220, 260, 30);
 		passwordField.setFont(_gui.seguisb());
+		passwordField.setBackground(Color.black);
 		passwordField.setFont(new Font(passwordField.getFont().getName(), Font.BOLD, 12));
 		return passwordField;
 	}
@@ -86,6 +89,7 @@ public class Login extends JPanel {
 		TextFieldSL usernameField = new TextFieldSL("Username");
 		usernameField.setBounds(536, 180, 260, 30);
 		usernameField.setFont(_gui.seguisb());
+		usernameField.setBackground(Color.black);
 		usernameField.setFont(new Font(usernameField.getFont().getName(), Font.BOLD, 12));
 		return usernameField;
 	}

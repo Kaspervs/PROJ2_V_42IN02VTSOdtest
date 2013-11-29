@@ -26,6 +26,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
@@ -45,17 +46,24 @@ public class ChatScreen extends JPanel implements Observer{
 	private static final String AVATAR = "/Assets/Images/default-avatar.png";
 	
 	private JScrollPane sp;
-	private JTextArea  scrollPaneJPanel = new JTextArea();
+	private JPanel  textArea = new JPanel();
 	private List chatBalloons = new ArrayList<ChatBalloon>();
 	
 	private Color color1 = new Color(38,115,236);
 	private	Color color2 = new Color(31,174,255);
 	
+	private Font segoeUI_sb;
+	
+	private JScrollBar verticalScrollBar;
+	private int scrollSpeed = 16;
+	
 	public ChatScreen(GameScreen p){
 		this._parent = p;
-		this.setBounds(bounds);
-		this.setBackground(Color.RED);
+		this.segoeUI_sb = _parent.getGui().seguisb();
 		
+		this.setBounds(bounds);
+		
+		this.setBackground(Color.RED);
 		
 		setAvatars();
 		sp = createScrollPane();
@@ -66,7 +74,7 @@ public class ChatScreen extends JPanel implements Observer{
 		this.add(sp);
 		this.add(inputField);
 		
-		System.out.println("dimensions : "+scrollPaneJPanel.getBounds());
+		System.out.println("dimensions : "+textArea.getBounds());
 	}
 	
 	@Override
@@ -111,21 +119,30 @@ public class ChatScreen extends JPanel implements Observer{
 	}
 	
 	private JScrollPane createScrollPane() {
-		JScrollPane jsp = new JScrollPane();
-		jsp.setAlignmentX(LEFT_ALIGNMENT);
+		JScrollPane jsp = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
+		verticalScrollBar = new JScrollBar(JScrollBar.VERTICAL){
+			@Override
+			public boolean isVisible(){
+				return true;
+			}
+		};
+		
+		jsp.setVerticalScrollBar(verticalScrollBar);
+		jsp.getVerticalScrollBar().setUnitIncrement(scrollSpeed);
+		jsp.setAlignmentX(LEFT_ALIGNMENT);
+		jsp.setBorder(null);
 		Rectangle r = new Rectangle(0, 110, 260, 408);
 		jsp.setBounds(r);
 		
-		scrollPaneJPanel.setBounds(r);
-		scrollPaneJPanel.setLayout(new BoxLayout(scrollPaneJPanel, BoxLayout.PAGE_AXIS));
-		scrollPaneJPanel.setLineWrap(true);
-		scrollPaneJPanel.setWrapStyleWord(true);
-		//scrollPaneJPanel.setPreferredSize(new Dimension(200,400));
-		scrollPaneJPanel.setBackground(Color.gray);
+		textArea.setBounds(r);
+		textArea.setLayout(new BoxLayout(textArea, BoxLayout.PAGE_AXIS));
+		//textArea.setLineWrap(true);
+		//textArea.setWrapStyleWord(true);
+		textArea.setBackground(Color.gray);
 		
 		//add jpanel to the viewport of the scrollpane
-		jsp.setViewportView(scrollPaneJPanel);
+		jsp.setViewportView(textArea);
 				
 		return jsp;
 	}
@@ -134,12 +151,12 @@ public class ChatScreen extends JPanel implements Observer{
 	
 	
 	private void createTextBalloon(String txt){
-		
-		ChatBalloon cb = new ChatBalloon(txt, color1, _parent.getGui().seguisb().getName());
+		ChatBalloon cb = new ChatBalloon(txt, color2, segoeUI_sb);
 		chatBalloons.add(cb);
-		scrollPaneJPanel.setPreferredSize(new Dimension(260,400));
-		scrollPaneJPanel.add(cb);
+		textArea.add(cb);
 		sp.revalidate();
+
+		verticalScrollBar.setValue(verticalScrollBar.getMaximum());
 	}
 	
 	private TextFieldSL createInputField(){
@@ -147,8 +164,8 @@ public class ChatScreen extends JPanel implements Observer{
 		TextFieldSL f = new TextFieldSL("Chatterdy Chat :D");
 		Rectangle b = new Rectangle(0, 528, 260, 30);
 		f.setBounds(b);
-		f.setFont(_parent.getGui().seguisb());
-		f.setFont(new Font(f.getFont().getName(), Font.BOLD, 12));
+		f.setFont(segoeUI_sb);
+		f.setFont(new Font(f.getFont().getName(), Font.BOLD, 11));
 		f.setForeground(new Color(33,33,33));
 		f.setBackground(new Color(210,210,210));
 		return f;

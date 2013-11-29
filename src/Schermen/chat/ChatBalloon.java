@@ -13,27 +13,23 @@ public class ChatBalloon extends JLabel {
 	private int height = 100;
 	private Dimension size = new Dimension(width, height);
 	
-	public ChatBalloon(String text, Color color, String font){
-
-		setBackground(Color.green);
-		createBalloon(text, color, font);
+	public ChatBalloon(String text, Color color, Font font){
+		setFont(font);
+		setFont(new Font(getFont().getName(), Font.BOLD, 11));
+		createBalloon(text, color, font.getName());
 		
-		System.out.println("width: "+getWidth());
 	}
 	
 	private void createBalloon(String text, Color color, String font){
 		// invoke HTML renderring in HTML aware components
         sb.append("<html>");
-        // start (the body &) an ordered list
-        // sb.append("<div style='padding: 4px 7px; background-color:rgb("+color.getRed()+", "+color.getGreen()+", "+color.getBlue()+");width:100%; ' >"
-        sb.append("<p style='padding: 4px 7px; background-color:rgb("+color.getRed()+", "+color.getGreen()+", "+color.getBlue()+"); font-family:"+font+"; font-size: 11px; width:200px;' >"
-        		//+ "<ul style='list-style-type:none;'>"
-        		//+ "<li style='font-family: " + 
-              //  font + "; font-size: 20px;'>"+
-        		+text//+"</li>"
-				//+ "</ul>"
-				+ "</p>");                
-        
+
+        sb.append("<div style='padding: 4px 7px; margin-bottom:10px; background-color:rgb("+color.getRed()+", "+color.getGreen()+", "+color.getBlue()+"); font-family:'"+font+"'; font-size: 11px;' WIDTH='"+width+"'>");
+        	sb.append("<div style='margin-bottom:4px;'>You:</div> ");
+        	sb.append(text);
+        	sb.append("<div style='margin-top:4px;'>10:24, 11/11/2013</div>");
+		sb.append("</div>");
+		
         sb.append("</html>");
         this.setText(sb.toString());
 	}

@@ -52,7 +52,6 @@ public class Gui extends JFrame {
 		this.setContentPane(jpanel);
 		this.setVisible(true);
 		this.setLayout(null);
-		//this.setBackground(new Color(0.11372549019607843137254901960784f, 0.11372549019607843137254901960784f, 0.11372549019607843137254901960784f));
 		this.setBackground(new Color(29,29,29));
 		//Center screen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

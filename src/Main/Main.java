@@ -16,6 +16,7 @@ public class Main {
 		DatabaseController DC = DatabaseController.getInstance();
 		DC.setDatabase("tdalmaij_db2").setHost("databases.aii.avans.nl").setPassword("Ab12345").setUser("tdalmaij");
 		DC.OpenConnection();
+		System.out.println("main : "+DC.debug());
 	}
 	
 	public ButtonListners getBtnListner() {

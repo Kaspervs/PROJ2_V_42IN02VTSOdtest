@@ -41,6 +41,7 @@ public class DatabaseController {
 			Statement st = null;
 			ResultSet rs = null;
 			try {
+				if(con == null) return null;
 				st = this.con.createStatement();
 				rs = st.executeQuery(query);
 			} catch (SQLException e) {
@@ -73,5 +74,9 @@ public class DatabaseController {
 	   public DatabaseController setPort(Integer port) {
 		   this.port = port;
 		   return instance;
+	   }
+	   
+	   public String debug(){
+		   return "host : "+host+", username : "+username+", password : "+password+", database : "+database;
 	   }
 }

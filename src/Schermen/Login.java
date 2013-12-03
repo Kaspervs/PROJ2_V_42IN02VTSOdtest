@@ -2,6 +2,7 @@ package Schermen;
 
 import java.awt.Color;
 import java.awt.Font;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -9,6 +10,7 @@ import javax.swing.JPasswordField;
 
 import logics.LoginLogics;
 import FormElements.MyButton;
+import FormElements.PasswordFieldSL;
 import FormElements.TextFieldSL;
 import Main.Gui;
 
@@ -73,7 +75,7 @@ public class Login extends JPanel {
 	}
 	
 	private JPasswordField createPasswordField() {
-		JPasswordField passwordField = new JPasswordField("Password");
+		JPasswordField passwordField = new PasswordFieldSL("Password");
 		passwordField.setBounds(536, 220, 260, 30);
 		passwordField.setFont(_gui.seguisb());
 		passwordField.setBackground(Color.black);

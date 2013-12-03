@@ -24,6 +24,9 @@ public class ButtonListners implements ActionListener  {
 			case "CloseFrame":
 				frame.dispose();
 				break;
+			case "CloseApp":
+				System.exit(0);
+				break;
 			case "Logout":
 				this.main.getGUI().showMessage("Dit is een test bericht die eigenlijk veel te lang is voor een logout message, maar puur bedoelt is om wordwrap te testen!", "Mededeling");
 				break;

@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -46,13 +47,12 @@ public class Gui extends JFrame {
 		jpanel.setBackground(null);
 		
 		this.setTitle("Wordfeud");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(new Dimension(1280,720));
 		this.setResizable(false);
 		this.setContentPane(jpanel);
 		this.setVisible(true);
 		this.setLayout(null);
-		//this.setBackground(new Color(0.11372549019607843137254901960784f, 0.11372549019607843137254901960784f, 0.11372549019607843137254901960784f));
 		this.setBackground(new Color(29,29,29));
 		//Center screen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -82,7 +82,7 @@ public class Gui extends JFrame {
 		closebtn.setBorder(null);
 		closebtn.setContentAreaFilled(false);
 		jpanel.add(closebtn);
-		closebtn.setName("CloseFrame");
+		closebtn.setName("CloseApp");
 		closebtn.addActionListener(main.getBtnListner()); 
 		
 		//Create draghandle
@@ -133,6 +133,4 @@ public class Gui extends JFrame {
 		new Alert(this, Message, Title);
 		
 	}
-	
-	
 }

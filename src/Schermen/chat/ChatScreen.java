@@ -9,8 +9,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.sql.PreparedStatement;
 //import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -100,6 +102,7 @@ public class ChatScreen extends JPanel implements Observer{
 	}
 	
 	private void emptyChatBox(){
+		if(chatBalloons.size() == 0) return;
 		for(int i=0; i < chatBalloons.size(); i++){
 			textArea.remove(i);
 		}
@@ -243,7 +246,22 @@ public class ChatScreen extends JPanel implements Observer{
 					Date date = new Date();
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					String timestamp = sdf.format(date);
-					ResultSet rs = DatabaseController.getInstance().runQuery("Insert into chatregel values 'marijntje42', 511,'"+ timestamp+"','"+text+ "'");
+					//ResultSet rs = DatabaseController.getInstance().runQuery("Insert into chatregel values 'marijntje42', 511,'"+ timestamp+"','"+text+ "'");
+					DatabaseController.getInstance().startPreparedStatement("INSERT INTO chatregel (`Account_naam`, `Spel_ID`, `datetime`, `bericht`) VALUES ( ?, ?, ?, ?)");
+					PreparedStatement statement = DatabaseController.getInstance().getPreparedStatement();
+					try {
+						statement.setString(1, "marijntje42");
+						statement.setInt(2, 511);
+						statement.setString(3, timestamp);
+						statement.setString(4, text);
+						DatabaseController.getInstance().setPreparedStatement(statement);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					DatabaseController.getInstance().runPreparedStatement();
+
+
 					//create text balloon
 					if(!text.isEmpty()) {
 						//the local player will get color1

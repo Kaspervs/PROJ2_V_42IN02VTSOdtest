@@ -5,8 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import com.mysql.jdbc.PreparedStatement;
+import java.sql.PreparedStatement;
 
 public class DatabaseController {
 	   private static DatabaseController instance = null;
@@ -56,18 +55,18 @@ public class DatabaseController {
 	   
 	   public void startPreparedStatement(String Query) {
 		   try {
-				con.prepareStatement(Query);
+			   pstmt = con.prepareStatement(Query);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 	   }
 	   
 	   public PreparedStatement getPreparedStatement() {
-		   return this.pstmt;
+		   return pstmt;
 	   }
 	   
 	   public void setPreparedStatement(PreparedStatement pstmt) {
-		   this.pstmt = pstmt;
+		   pstmt = pstmt;
 	   }
 	   
 	   public void runPreparedStatement() {

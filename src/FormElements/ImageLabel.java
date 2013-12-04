@@ -1,47 +1,38 @@
 package FormElements;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class ImageLabel extends JLabel {
-	private Color backgroundColor = Color.white;
-	private StringBuilder sb = new StringBuilder();
+import utils.ImageTool;
+import Main.Gui;
 
-  public ImageLabel(String img) {
-    this(new ImageIcon(img));
-  }
-
-  public ImageLabel(ImageIcon icon) {
-    setIcon(icon);
-    // setMargin(new Insets(0,0,0,0));
-    setIconTextGap(0);
-    // setBorderPainted(false);
-    setBorder(null);
-    setText("dsafsadf");
-    setSize(icon.getImage().getWidth(null), icon.getImage().getHeight(null));
-    this.repaint();
-  }
-  
-	private StringBuilder createBalloonHTML(String text, Color color){
-		String backgroundColor="background-color:rgb("+color.getRed()+", "+color.getGreen()+", "+color.getBlue()+");";
-		int width = 260;
+@SuppressWarnings("serial")
+public class ImageLabel extends JPanel {
+	public ImageLabel(Gui gui, ImageIcon icon, String string) {
+		this.setBackground(null);
+		this.setLayout(null);
+		this.setBounds(0, 0, 260, 57);
 		
-		sb.delete(0, sb.length());
-		sb.append("<html>");
+		icon = ImageTool.resize(icon, new Dimension(40,40));
 		
-		sb.append("<div style='padding: 4px 7px; margin-bottom:10px; "+backgroundColor+" font-size: 11px;' WIDTH='"+width+"'>");
-		        //sb.append("<div style='margin-bottom:4px;'>You:</div> ");
-		        sb.append(text);
-		        sb.append("</div>");
-		        
-		sb.append("</html>");
-		return sb;
-	}
-	
-	private void toggleBalloonColor(JLabel balloon, String text){
-		balloon.setText(createBalloonHTML(text,Color.red).toString());
-	}
+		JLabel JavaLabel = new JLabel(icon);
+		JavaLabel.setBounds(4,4, 49,49);
+		this.add(JavaLabel);
 
+		JLabel loginText = new JLabel(string);
+		loginText.setForeground(Color.white);
+		loginText.setBounds(69, 8, 181, 30);
+		loginText.setFont(gui.segoeuil());
+		loginText.setFont(new Font(loginText.getFont().getName(), Font.PLAIN, 24));
+		
+		this.add(loginText);
+		this.add(new ColoredRectangle(new Rectangle(260,57), new Color(0,114,198)));
+	}
+		
 }

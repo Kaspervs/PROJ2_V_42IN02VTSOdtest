@@ -1,9 +1,15 @@
 package utils;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public abstract class ImageTool {
 
@@ -99,6 +105,14 @@ public abstract class ImageTool {
         image = toImage(bimg);
         return image;
     }
+    
+    public static ImageIcon resize(ImageIcon icon, Dimension d){
+    	Image image = icon.getImage(); // transform it 
+		Image newimg = image.getScaledInstance(d.width, d.height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+		icon = new ImageIcon(newimg);  // transform it back
+		
+        return icon;
+	}
 
     /**
      * Creates a tiled image with an image upto given width and height

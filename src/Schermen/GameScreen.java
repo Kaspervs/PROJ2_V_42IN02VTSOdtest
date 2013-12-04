@@ -17,6 +17,7 @@ public class GameScreen extends JPanel {
 	private GameField gameField;
 	private ScoreScreen scoreScreen;
 	private Hand gameHand;
+	
 	public GameScreen(Gui g){
 		this._gui = g;
 		this.setBounds(0, 0, _gui.getWidth(), _gui.getHeight());

@@ -2,6 +2,7 @@ package Schermen.score;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -23,12 +24,33 @@ public class ScoreScreen extends JPanel {
 	private Dimension avatarDimension = new Dimension(57,57);
 	private static final String AVATAR = "/Assets/Images/default-avatar.png";
 	
+	private JLabel tilesLeft, player1, player2, score;
+	
 	public ScoreScreen(GameScreen p){
 		this._parent = p;
 		this.setBounds(bounds);
 		System.out.println(" Score ");
-		this.setBackground(Color.red);
+		//this.setBackground(null);
 		setAvatars();
+		player1 = new JLabel(" JAAAAAAAAAAAA ");
+		add(player1);
+		initLabels();
+	}
+	
+	private void initLabels(){
+		tilesLeft = createLabel("Tiles left: 125", _parent.getGui().seguisb(), 11);
+		tilesLeft.setBounds(0, 24, 260, 30);
+		
+		this.add(tilesLeft);
+		System.out.println("tilesLeft "+tilesLeft.getText());
+	}
+	
+	private JLabel createLabel(String text, Font f, int size){
+		JLabel l = new JLabel(text);
+		l.setForeground(Color.WHITE);
+		l.setFont(f);
+		l.setFont(new Font(l.getFont().getName(), Font.BOLD, size));
+		return l;
 	}
 	
 	private void setAvatars(){

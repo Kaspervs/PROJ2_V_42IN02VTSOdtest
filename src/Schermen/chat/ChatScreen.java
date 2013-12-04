@@ -9,9 +9,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+//import java.sql.Date;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -27,6 +31,8 @@ import logics.ChatModel;
 import utils.ImageTool;
 import FormElements.TextFieldSL;
 import Schermen.GameScreen;
+import Main.DatabaseController;
+
 
 @SuppressWarnings("serial")
 public class ChatScreen extends JPanel implements Observer{
@@ -233,6 +239,11 @@ public class ChatScreen extends JPanel implements Observer{
 					String text = s.getText().toString().trim();
 					System.out.println("Enter: "+ text);
 					//send the text to the database
+					//timestamp
+					Date date = new Date();
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					String timestamp = sdf.format(date);
+					ResultSet rs = DatabaseController.getInstance().runQuery("Insert into chatregel values 'marijntje42', 511,'"+ timestamp+"','"+text+ "'");
 					//create text balloon
 					if(!text.isEmpty()) {
 						//the local player will get color1

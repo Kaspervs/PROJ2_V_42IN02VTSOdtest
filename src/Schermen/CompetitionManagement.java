@@ -23,10 +23,10 @@ public class CompetitionManagement extends JPanel {
 	private Rectangle bounds = new Rectangle(20, 20, 20, 20);
 	private ArrayList<String> friends = new ArrayList<String>();
 	private ImageIcon icon;
-	private CompetitionLogic cL;
+	private CompetitionLogic competitionLogics;
 	
 	public CompetitionManagement(Gui gui){
-		this.cL = new CompetitionLogic(this);
+		this.competitionLogics = new CompetitionLogic(this);
 		this._gui = gui;
 		this.setBackground(null);
 		this.setBounds(0, 0, gui.getWidth(), gui.getHeight());
@@ -41,7 +41,7 @@ public class CompetitionManagement extends JPanel {
 			ImageIcon iconi = new ImageIcon(getClass().getResource("/Assets/Images/default-avatar.png"));
 			ImageLabel il = new ImageLabel(gui, iconi, friend);
 			il.setLocation(425, 230+i);
-			cL.initLabelMouseListener(il);
+			competitionLogics.initMouseListener(il);
 			this.add(il);
 			i += 65;
 		}
@@ -58,10 +58,15 @@ public class CompetitionManagement extends JPanel {
 		 //btnAdd.setFont(FontController.getInstance().getFont("seguisb"));
 		 button.setFont(new Font(button.getFont().getName(), Font.BOLD, 12));
 		 button.setName(name);
+		 button.addActionListener(this.getcompetitionLogics());
 		 //loginBtn.addActionListener(logics);
 		 return button;
 	 }
 	
+	public CompetitionLogic getcompetitionLogics() {
+		return competitionLogics;
+	}
+
 	public Gui getGui(){
 		return this._gui;
 	}

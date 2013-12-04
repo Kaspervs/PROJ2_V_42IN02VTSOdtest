@@ -2,21 +2,33 @@ package logics;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
-import FormElements.ColoredRectangle;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 import FormElements.ImageLabel;
+import FormElements.MyButton;
+import Main.DatabaseController;
 import Schermen.CompetitionManagement;
+import Schermen.ObserverSelectgame;
 
-public class CompetitionLogic {
+public class CompetitionLogic implements ActionListener {
 	private CompetitionManagement cm;
+	private ArrayList<MyButton> btnList;
 	
 	public CompetitionLogic(CompetitionManagement cm){
 		this.cm = cm;
+		this.btnList = new ArrayList<MyButton>();
 	}
 	
-	public void initLabelMouseListener(final ImageLabel il){
+	public void initMouseListener(final ImageLabel il){
 		il.addMouseListener(new MouseListener(){
 
 			@Override
@@ -61,11 +73,16 @@ public class CompetitionLogic {
 		iL.setTriggered(!iL.isTriggered());
 		iL.repaint();
 	}
-	
-	/*public void actionPerformed(ActionEvent e) {
-	    if (e.getSource() == avgBtn) {
-	        computeAverage();
-	        panel.repaint();
-	    }
-	}*/
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton source = (JButton) e.getSource(); 
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(source);
+        
+        switch (source.getName()) {
+                case "btnAdd":
+                        System.out.println("add");
+                        break;
+        }
+	}
 }

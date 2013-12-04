@@ -74,4 +74,12 @@ public class ManageWords extends JPanel {
 		return this.tfNewWords.getText();
 	}
 	
+	public void emptyText(){
+		tfNewWords.setText("");
+	}
+	
+	public Gui getGui() {
+		return this._gui;
+	}
+	
 }

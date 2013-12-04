@@ -62,28 +62,12 @@ public class DatabaseController {
 			}
 	   }
 	   
-	   public void pstmtSetNull(int id, int type) {
-		    try {
-		    	pstmt.setNull(id, type);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+	   public PreparedStatement getPreparedStatement() {
+		   return this.pstmt;
 	   }
 	   
-	   public void pstmtSetString(int id, String string) {
-		    try {
-		    	pstmt.setString(id, string);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-	   }
-	   
-	   public void pstmtSetInt(int id, int integer) {
-		    try {
-		    	pstmt.setInt(id, integer);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+	   public void setPreparedStatement(PreparedStatement pstmt) {
+		   this.pstmt = pstmt;
 	   }
 	   
 	   public void runPreparedStatement() {

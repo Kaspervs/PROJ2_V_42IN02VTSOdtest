@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import Schermen.GameScreen;
 import Schermen.Login;
 import Schermen.ObserverSelectgame;
-
+import Schermen.WordJudgement;;
 
 @SuppressWarnings("serial")
 public class Gui extends JFrame {
@@ -68,7 +68,8 @@ public class Gui extends JFrame {
 		//jpanel.add(new Login(this));
 		//jpanel.add(new Register(this));
 		//jpanel.add(new ObserverSelectgame(this));
-		jpanel.add(new GameScreen(this));
+		//jpanel.add(new GameScreen(this));
+		jpanel.add(new WordJudgement(this));
 		
 		this.repaint();
 	}

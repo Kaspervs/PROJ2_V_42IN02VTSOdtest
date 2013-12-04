@@ -16,9 +16,9 @@ import Main.DatabaseController;
 import Main.Gui;
 
 
-public class WordJudgement extends JPanel {
+public class ManageWords extends JPanel {
 	private Gui _gui;
-	public WordJudgement(Gui gui){
+	public ManageWords(Gui gui){
 		
 		this._gui = gui;
 		this.setBackground(null);
@@ -30,23 +30,8 @@ public class WordJudgement extends JPanel {
 				AvansLabel.setBounds(20,gui.getHeight() - 21 - AvansLogo.getIconHeight(), AvansLogo.getIconWidth(), AvansLogo.getIconHeight());
 				this.add(AvansLabel);
 				
-				//wordjugdement tekst
-				JLabel welkomText = new JLabel("Wordjudgement");
-				welkomText.setForeground(Color.white);
-				welkomText.setBounds(500,120,350,55);
-				welkomText.setFont(_gui.segoeuil());
-				welkomText.setFont(new Font(welkomText.getFont().getName(), Font.PLAIN, 42));
-				this.add(welkomText);
 				
-				//Button Managewords
-				
-				MyButton manageWordsbtn = new MyButton("Manage words");
-				manageWordsbtn.setBounds(693, 292, 101, 27);
-				manageWordsbtn.setFont(_gui.seguisb());
-				manageWordsbtn.setFont(new Font(manageWordsbtn.getFont().getName(), Font.BOLD, 12));
-				manageWordsbtn.setName("manageWordsbtn");
-				manageWordsbtn.addActionListener(_gui.getMain().getBtnListner());
-				this.add(manageWordsbtn);
+		
 	}
 	
 }

@@ -6,6 +6,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import Schermen.ManageWords;
+import Schermen.ObserverSelectgame;
+
 
 public class ButtonListners implements ActionListener  {
 	private Main main;
@@ -21,6 +24,9 @@ public class ButtonListners implements ActionListener  {
 		
 		
 		switch (source.getName()) {
+			case "manageWordsbtn":
+				this.main.getGUI().changeScreen(new ManageWords(this.main.getGUI()));
+				break;
 			case "CloseFrame":
 				frame.dispose();
 				break;

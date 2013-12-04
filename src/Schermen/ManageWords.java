@@ -21,6 +21,9 @@ import Main.Gui;
 public class ManageWords extends JPanel {
 	private Gui _gui;
 	private ManageWordsLogics logics = new ManageWordsLogics(this);
+	private TextFieldSL tfNewWords;
+	
+	
 	public ManageWords(Gui gui){
 		
 		this._gui = gui;
@@ -50,7 +53,7 @@ public class ManageWords extends JPanel {
 				this.add(createWords);	
 				
 				//new words inputfield
-				TextFieldSL tfNewWords = new TextFieldSL("Create new word");
+				tfNewWords = new TextFieldSL("Create new word");
 				tfNewWords.setBounds(50, 250, 170, 30);
 				tfNewWords.setFont(FontController.getInstance().getFont("seguisb"));
 				tfNewWords.setFont(new Font(tfNewWords.getFont().getName(), Font.BOLD, 12));
@@ -65,6 +68,10 @@ public class ManageWords extends JPanel {
 				btnCreateWord.addActionListener(logics);
 				this.add(btnCreateWord);
 		
+	}
+	
+	public String getNewWordsTF() {
+		return this.tfNewWords.getText();
 	}
 	
 }

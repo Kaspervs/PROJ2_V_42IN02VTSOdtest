@@ -73,16 +73,21 @@ public class ManageWords extends JPanel {
 				this.add(btnCreateWord);
 				
 				//scrollpanel
-				scrlField = new ScrollField(new Dimension(200,300));
-				scrlField.setBounds(100, 200, 200, 300);
-				this.add(scrlField);
 				
-				/*for(int i = 0; i < 100; i++) {
-					JPanel test = new JPanel();
-					test.setPreferredSize(new Dimension(200,10));
-					scrlField.addElement(test);
-				}*/
-			
+				ScrollField sf = new ScrollField(new Dimension(200,500));
+				sf.setBounds(400,200,200,300);
+				
+				
+				
+
+				
+				for(int i = 0; i < 20; i++) {  
+					ColoredRectangle temp = new ColoredRectangle(new Rectangle(200,50), Color.red);
+					temp.setLayout(null);
+					sf.addElement(temp);  
+			    } 
+				
+				this.add(sf);
 				
 		
 	}

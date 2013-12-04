@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.awt.Scrollbar;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
@@ -13,7 +14,7 @@ import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class ScrollField extends JPanel {
-	private JPanel ContentPanel = new JPanel();
+	private JPanel cp = new JPanel();
 	private Dimension size;
 	private int scrollSpeed = 16;
 	private int spacerHeight = 10;
@@ -23,13 +24,14 @@ public class ScrollField extends JPanel {
 		
 		this.setBackground(null);
 		this.setLayout(null);
+		this.setBounds(0, 0, size.width, size.height);
 		
 		
-		this.ContentPanel.setBounds(0, 0, size.width, size.height);
-		this.ContentPanel.setLayout(new BoxLayout(this.ContentPanel, BoxLayout.PAGE_AXIS));
-		this.ContentPanel.setBackground(null);
+		cp.setBounds(0, 0, size.width, size.height);
+		cp.setLayout(new BoxLayout(this.cp, BoxLayout.PAGE_AXIS));
+		cp.setBackground(null);
 		
-		JScrollPane scrollPanel = new JScrollPane(this.ContentPanel);
+		JScrollPane scrollPanel = new JScrollPane(cp);
 		
 		JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
 
@@ -51,14 +53,14 @@ public class ScrollField extends JPanel {
 	}
 	
 	public void addElement(JComponent panel) {
-		this.ContentPanel.add(panel);
+		this.cp.add(panel);
 		
 		JPanel filler = new JPanel();
 		filler.setSize(this.size.width,this.spacerHeight);
 		filler.setBackground(null);
-		this.ContentPanel.add(filler);
+		this.cp.add(filler);
 		
-		this.ContentPanel.revalidate();
+		this.cp.revalidate();
 	}
 	
 	public void setNewSpacerHeight(int spacerheight) {

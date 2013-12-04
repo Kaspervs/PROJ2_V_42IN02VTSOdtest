@@ -29,16 +29,7 @@ public class Gui extends JFrame {
 		this.main = main;
 		
 		//Load fonts
-        try {
-			//Light
-        	segoeuil = Font.createFont( Font.TRUETYPE_FONT, new FileInputStream("bin/Assets/Fonts/segoeuil.ttf") );
-			//Semi bold
-	        seguisb = Font.createFont( Font.TRUETYPE_FONT, new FileInputStream("bin/Assets/Fonts/seguisb.ttf") );
-	        //Normal
-	        segoeui = Font.createFont( Font.TRUETYPE_FONT, new FileInputStream("bin/Assets/Fonts/segoeui.ttf") );
-		} catch (FontFormatException | IOException e) {
-			e.printStackTrace();
-		}
+		FontController.getInstance().InitFonts();
 		
 		//Dit hide de frame border
 		setUndecorated(true);	
@@ -96,30 +87,6 @@ public class Gui extends JFrame {
 		setupForm();
 		jpanel.add(content);
 		jpanel.repaint();
-	}
-	
-	/**
-	 * Segoe UI Light
-	 * @return Font
-	 */
-	public Font segoeuil() {
-		return this.segoeuil;
-	}
-	
-	/**
-	 * Segoe UI Normal
-	 * @return Font
-	 */
-	public Font segoeui() {
-		return this.segoeui;
-	}
-	
-	/**
-	 * Segoe UI Semi Bold
-	 * @return Font
-	 */
-	public Font seguisb() {
-		return this.seguisb;
 	}
 	
 	public Main getMain() {

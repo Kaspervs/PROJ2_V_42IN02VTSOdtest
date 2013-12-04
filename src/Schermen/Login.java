@@ -13,6 +13,7 @@ import logics.LoginLogics;
 import FormElements.MyButton;
 import FormElements.TextFieldSL;
 import Main.DatabaseController;
+import Main.FontController;
 import Main.Gui;
 
 @SuppressWarnings("serial")
@@ -58,7 +59,7 @@ public class Login extends JPanel {
 	private MyButton createLoginBtn(){
 		MyButton loginBtn = new MyButton("Login");
 		loginBtn.setBounds(693, 292, 101, 27);
-		loginBtn.setFont(_gui.seguisb());
+		loginBtn.setFont(FontController.getInstance().getFont("seguisb"));
 		loginBtn.setFont(new Font(loginBtn.getFont().getName(), Font.BOLD, 12));
 		loginBtn.setName("loginBtn");
 		loginBtn.addActionListener(logics);
@@ -68,7 +69,7 @@ public class Login extends JPanel {
 	private MyButton createRegisterButton(){
 		MyButton createAccBtn = new MyButton("Create account");
 		createAccBtn.setBounds(538, 292, 101, 27);
-		createAccBtn.setFont(_gui.seguisb());
+		createAccBtn.setFont(FontController.getInstance().getFont("seguisb"));
 		createAccBtn.setFont(new Font(createAccBtn.getFont().getName(), Font.BOLD, 12));
 		//TODO add click listener
 		return createAccBtn;
@@ -77,7 +78,7 @@ public class Login extends JPanel {
 	private TextFieldSL createPasswordField() {
 		TextFieldSL passwordField = new TextFieldSL("Password");
 		passwordField.setBounds(536, 220, 260, 30);
-		passwordField.setFont(_gui.seguisb());
+		passwordField.setFont(FontController.getInstance().getFont("seguisb"));
 		passwordField.setFont(new Font(passwordField.getFont().getName(), Font.BOLD, 12));
 		return passwordField;
 	}
@@ -85,7 +86,7 @@ public class Login extends JPanel {
 	private TextFieldSL createUsernameField() {
 		TextFieldSL usernameField = new TextFieldSL("Username");
 		usernameField.setBounds(536, 180, 260, 30);
-		usernameField.setFont(_gui.seguisb());
+		usernameField.setFont(FontController.getInstance().getFont("seguisb"));
 		usernameField.setFont(new Font(usernameField.getFont().getName(), Font.BOLD, 12));
 		return usernameField;
 	}
@@ -115,7 +116,7 @@ public class Login extends JPanel {
 		JLabel loginText = new JLabel("Login");
 		loginText.setForeground(Color.white);
 		loginText.setBounds(426,120,268,55);
-		loginText.setFont(_gui.segoeuil());
+		loginText.setFont(FontController.getInstance().getFont("segoeuil"));
 		loginText.setFont(new Font(loginText.getFont().getName(), Font.PLAIN, 42));
 		return loginText;
 	}

@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import FormElements.ColoredRectangle;
 import FormElements.MyButton;
 import FormElements.ScrollField;
+import Main.FontController;
 import Main.Gui;
 
 @SuppressWarnings("serial")
@@ -24,7 +25,7 @@ public class ObserverSelectgame extends JPanel {
 		JLabel observerText = new JLabel("Observer");
 		observerText.setForeground(Color.white);
 		observerText.setBounds(363,120,268,55);
-		observerText.setFont(gui.segoeuil());
+		observerText.setFont(FontController.getInstance().getFont("segoeuil"));
 		observerText.setFont(new Font(observerText.getFont().getName(), Font.PLAIN, 42));
 		this.add(observerText);
 		
@@ -32,14 +33,14 @@ public class ObserverSelectgame extends JPanel {
 		JLabel selectGameText = new JLabel("Select game");
 		selectGameText.setForeground(Color.white);
 		selectGameText.setBounds(363,184,125,29);
-		selectGameText.setFont(gui.seguisb());
+		selectGameText.setFont(FontController.getInstance().getFont("seguisb"));
 		selectGameText.setFont(new Font(selectGameText.getFont().getName(), Font.BOLD, 22));
 		this.add(selectGameText);
 		
 		//Logout Button
 		MyButton logoutBtn = new MyButton("Logout");
 		logoutBtn.setBounds(867, 566, 101, 27);
-		logoutBtn.setFont(gui.seguisb());
+		logoutBtn.setFont(FontController.getInstance().getFont("seguisb"));
 		logoutBtn.setFont(new Font(logoutBtn.getFont().getName(), Font.BOLD, 12));
 		logoutBtn.setName("Logout");
 		this.add(logoutBtn);

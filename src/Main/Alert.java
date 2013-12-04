@@ -78,7 +78,7 @@ public class Alert extends JFrame {
 		JLabel errorTitle = new JLabel(title);
 		errorTitle.setForeground(Color.white);
 		errorTitle.setBounds(10,20,380,55);
-		errorTitle.setFont(this.gui.segoeuil());
+		errorTitle.setFont(FontController.getInstance().getFont("segoeuil"));
 		errorTitle.setFont(new Font(errorTitle.getFont().getName(), Font.PLAIN, 42));
 		jpanel.add(errorTitle);
 		
@@ -90,7 +90,7 @@ public class Alert extends JFrame {
 		errorMessage.setWrapStyleWord(true);
 		errorMessage.setForeground(Color.white);
 		errorMessage.setBounds(10,85,380,155);
-		errorMessage.setFont(this.gui.segoeui());
+		errorMessage.setFont(FontController.getInstance().getFont("segoeui"));
 		errorMessage.setFont(new Font(errorMessage.getFont().getName(), Font.PLAIN, 14));
 		jpanel.add(errorMessage);
 

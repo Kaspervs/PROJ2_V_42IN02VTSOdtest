@@ -34,6 +34,7 @@ import utils.ImageTool;
 import FormElements.TextFieldSL;
 import Schermen.GameScreen;
 import Main.DatabaseController;
+import Main.FontController;
 
 
 @SuppressWarnings("serial")
@@ -60,7 +61,7 @@ public class ChatScreen extends JPanel implements Observer{
 	
 	public ChatScreen(GameScreen p){
 		this._parent = p;
-		this.segoeUI_sb = _parent.getGui().seguisb();
+		this.segoeUI_sb = FontController.getInstance().getFont("seguisb");
 		
 		this.setBounds(bounds);
 		

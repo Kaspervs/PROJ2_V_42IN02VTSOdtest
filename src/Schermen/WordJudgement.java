@@ -13,6 +13,7 @@ import logics.LoginLogics;
 import FormElements.MyButton;
 import FormElements.TextFieldSL;
 import Main.DatabaseController;
+import Main.FontController;
 import Main.Gui;
 
 
@@ -34,7 +35,7 @@ public class WordJudgement extends JPanel {
 				JLabel welkomText = new JLabel("Wordjudgement");
 				welkomText.setForeground(Color.white);
 				welkomText.setBounds(500,120,350,55);
-				welkomText.setFont(_gui.segoeuil());
+				welkomText.setFont(FontController.getInstance().getFont("segoeuil"));
 				welkomText.setFont(new Font(welkomText.getFont().getName(), Font.PLAIN, 42));
 				this.add(welkomText);
 				
@@ -42,7 +43,7 @@ public class WordJudgement extends JPanel {
 				
 				MyButton manageWordsbtn = new MyButton("Manage words");
 				manageWordsbtn.setBounds(693, 292, 101, 27);
-				manageWordsbtn.setFont(_gui.seguisb());
+				manageWordsbtn.setFont(FontController.getInstance().getFont("seguisb"));
 				manageWordsbtn.setFont(new Font(manageWordsbtn.getFont().getName(), Font.BOLD, 12));
 				manageWordsbtn.setName("manageWordsbtn");
 				manageWordsbtn.addActionListener(_gui.getMain().getBtnListner());

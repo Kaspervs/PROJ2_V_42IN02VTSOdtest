@@ -42,4 +42,14 @@ public class FontController {
 		   }
 		   return new Font("", 0, 0);	//Lame hack, empty font
 	   }
+	   
+	   public Font getSegoeUI(){
+		   return this.segoeui;
+	   }
+	   public Font getSegoeLight(){
+		   return this.segoeuil;
+	   }
+	   public Font getSegoeSemiBold(){
+		   return this.seguisb;
+	   }
 }

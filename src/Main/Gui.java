@@ -59,8 +59,8 @@ public class Gui extends JFrame {
 		//jpanel.add(new Login(this));
 		//jpanel.add(new Register(this));
 		//jpanel.add(new ObserverSelectgame(this));
-		//jpanel.add(new GameScreen(this));
-		jpanel.add(new WordJudgement(this));
+		jpanel.add(new GameScreen(this));
+		//jpanel.add(new WordJudgement(this));
 		
 		this.repaint();
 	}

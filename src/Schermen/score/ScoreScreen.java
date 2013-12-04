@@ -12,8 +12,10 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import utils.ImageTool;
+import Main.FontController;
 import Schermen.GameScreen;
 
 public class ScoreScreen extends JPanel {
@@ -32,16 +34,18 @@ public class ScoreScreen extends JPanel {
 		System.out.println(" Score ");
 		//this.setBackground(null);
 		setAvatars();
-		player1 = new JLabel(" JAAAAAAAAAAAA ");
-		add(player1);
 		initLabels();
 	}
 	
 	private void initLabels(){
-		tilesLeft = createLabel("Tiles left: 125", _parent.getGui().seguisb(), 11);
+		tilesLeft = createLabel("Tiles left: 125", FontController.getInstance().getSegoeSemiBold(), 11);
 		tilesLeft.setBounds(0, 24, 260, 30);
-		
 		this.add(tilesLeft);
+		
+		score = createLabel("0 - 0", FontController.getInstance().getSegoeLight(), 42);
+		score.setBounds(64 ,64, 133, 47);
+		score.setHorizontalAlignment( SwingConstants.CENTER );
+		this.add(score);
 		System.out.println("tilesLeft "+tilesLeft.getText());
 	}
 	

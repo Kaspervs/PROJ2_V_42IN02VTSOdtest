@@ -13,14 +13,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Schermen.GameScreen;
-import Schermen.Login;
+import Schermen.CompetitionManagement;
 
 
 @SuppressWarnings("serial")
 public class Gui extends JFrame {
 	private Main main;
     private Font segoeuil, segoeui, seguisb;
+    private JPanel jpanel = new JPanel();
     
 	public Gui(Main main) {
 		this.main = main;
@@ -40,7 +40,6 @@ public class Gui extends JFrame {
 		//Dit hide de frame border
 		setUndecorated(true);	
 		
-		JPanel jpanel = new JPanel();
 		jpanel.setSize(new Dimension(1280,720));
 		jpanel.setBackground(null);
 		
@@ -61,7 +60,20 @@ public class Gui extends JFrame {
 						(int) ((screenSize.height - this.getSize().getHeight()) / 2)
 				)
 		);	
+		this.setupForm();
 		
+		//Create loginscreen
+		//jpanel.add(new Login(this));
+		jpanel.add(new CompetitionManagement(this));
+		//jpanel.add(new Register(this));
+		//jpanel.add(new ObserverSelectgame(this));
+		//jpanel.add(new GameList(this));
+		//jpanel.add(new GameScreen(this));
+		
+		this.repaint();
+	}
+	
+	private void setupForm() {
 		//Load close button image icon
 		ImageIcon icon = new ImageIcon(getClass().getResource("/Assets/Images/close_small.png"));
 		JButton closebtn = new JButton("", icon);
@@ -76,17 +88,15 @@ public class Gui extends JFrame {
 		//Create draghandle
 		jpanel.add(new DragHandle(this));
 		
-		//Create loginscreen
-
-		jpanel.add(new Login(this));
-		//jpanel.add(new Register(this));
-		//jpanel.add(new ObserverSelectgame(this));
-		//jpanel.add(new GameScreen(this));
-
-		
-		
-		this.repaint();
 	}
+	
+	public void changeScreen(JPanel content) {
+		jpanel.removeAll();
+		setupForm();
+		jpanel.add(content);
+		jpanel.repaint();
+	}
+	
 	/**
 	 * Segoe UI Light
 	 * @return Font

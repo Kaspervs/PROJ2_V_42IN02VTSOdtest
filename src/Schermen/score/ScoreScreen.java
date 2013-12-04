@@ -23,7 +23,8 @@ public class ScoreScreen extends JPanel {
 	private Dimension avatarDimension = new Dimension(57,57);
 	private static final String AVATAR = "/Assets/Images/default-avatar.png";
 	
-	public ScoreScreen(){
+	public ScoreScreen(GameScreen p){
+		this._parent = p;
 		this.setBounds(bounds);
 		System.out.println(" Score ");
 		this.setBackground(Color.red);

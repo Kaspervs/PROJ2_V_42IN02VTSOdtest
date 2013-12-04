@@ -7,6 +7,7 @@ import Main.Gui;
 import Schermen.chat.ChatScreen;
 import Schermen.gamescreen.GameField;
 import Schermen.gamescreen.Hand;
+import Schermen.score.ScoreScreen;
 
 public class GameScreen extends JPanel {
 	//View
@@ -14,6 +15,7 @@ public class GameScreen extends JPanel {
 	private ChatScreen chatScreen;
 	private ChatModel chatModel;
 	private GameField gameField;
+	private ScoreScreen scoreScreen;
 	private Hand gameHand;
 	public GameScreen(Gui g){
 		this._gui = g;
@@ -21,10 +23,15 @@ public class GameScreen extends JPanel {
 		this.add(initChat());
 		this.setBackground(null);
 		initGameField();
+		initScoreScreen();
 	}
 	
+	private void initScoreScreen(){
+		scoreScreen = new ScoreScreen(this);
+		this.add(scoreScreen);
+	}
 	
-	public JPanel initChat(){
+	private JPanel initChat(){
 		chatScreen = new ChatScreen(this);
 
 		chatModel = new ChatModel();
@@ -33,7 +40,7 @@ public class GameScreen extends JPanel {
 		return chatScreen; 
 	}
 	
-	public void initGameField(){
+	private void initGameField(){
 		gameField = new GameField(this);
 		gameField.setBounds(364, 80, 560, 560);
 		

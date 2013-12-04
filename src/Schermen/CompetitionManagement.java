@@ -24,9 +24,11 @@ public class CompetitionManagement extends JPanel {
 	private ArrayList<String> friends = new ArrayList<String>();
 	private ImageIcon icon;
 	private CompetitionLogic competitionLogics;
+	private ArrayList<ImageLabel> alImageLabel;
 	
 	public CompetitionManagement(Gui gui){
 		this.competitionLogics = new CompetitionLogic(this);
+		alImageLabel = new ArrayList<ImageLabel>();
 		this._gui = gui;
 		this.setBackground(null);
 		this.setBounds(0, 0, gui.getWidth(), gui.getHeight());
@@ -42,6 +44,7 @@ public class CompetitionManagement extends JPanel {
 			ImageLabel il = new ImageLabel(gui, iconi, friend);
 			il.setLocation(425, 230+i);
 			competitionLogics.initMouseListener(il);
+			alImageLabel.add(il);
 			this.add(il);
 			i += 65;
 		}
@@ -52,14 +55,16 @@ public class CompetitionManagement extends JPanel {
 		this.add(createButton("Logout", "btnLogout", new Rectangle(750, 670, 55, 27)));
 	}
 	
-	 private MyButton createButton(String text, String name, Rectangle bounds){
+	 public ArrayList<ImageLabel> getAlImageLabel() {
+		return alImageLabel;
+	}
+
+	private MyButton createButton(String text, String name, Rectangle bounds){
 		 MyButton button = new MyButton(text);
 		 button.setBounds(bounds);
-		 //btnAdd.setFont(FontController.getInstance().getFont("seguisb"));
 		 button.setFont(new Font(button.getFont().getName(), Font.BOLD, 12));
 		 button.setName(name);
 		 button.addActionListener(this.getcompetitionLogics());
-		 //loginBtn.addActionListener(logics);
 		 return button;
 	 }
 	

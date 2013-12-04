@@ -46,6 +46,14 @@ public class ScoreScreen extends JPanel {
 		score.setBounds(64 ,64, 133, 47);
 		score.setHorizontalAlignment( SwingConstants.CENTER );
 		this.add(score);
+		
+		player1 = createLabel("Player 1", FontController.getInstance().getSegoeSemiBold(), 11);
+		player1.setBounds(0, 116, 64, 15);
+		this.add(player1);
+		
+		player2 = createLabel("Player 2", FontController.getInstance().getSegoeSemiBold(), 11);
+		player2.setBounds(203, 116, 64, 15);
+		this.add(player2);
 		System.out.println("tilesLeft "+tilesLeft.getText());
 	}
 	

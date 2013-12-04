@@ -240,37 +240,39 @@ public class ChatScreen extends JPanel implements Observer{
 				if(e.getSource() == inputField && keyCode == KeyEvent.VK_ENTER){
 					TextFieldSL s = (TextFieldSL) e.getSource();
 					String text = s.getText().toString().trim();
-					System.out.println("Enter: "+ text);
-					//send the text to the database
-					//timestamp
-					Date date = new Date();
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					String timestamp = sdf.format(date);
-					//ResultSet rs = DatabaseController.getInstance().runQuery("Insert into chatregel values 'marijntje42', 511,'"+ timestamp+"','"+text+ "'");
-					DatabaseController.getInstance().startPreparedStatement("INSERT INTO chatregel (`Account_naam`, `Spel_ID`, `datetime`, `bericht`) VALUES ( ?, ?, ?, ?)");
-					PreparedStatement statement = DatabaseController.getInstance().getPreparedStatement();
-					try {
-						statement.setString(1, "marijntje42");
-						statement.setInt(2, 511);
-						statement.setString(3, timestamp);
-						statement.setString(4, text);
-						DatabaseController.getInstance().setPreparedStatement(statement);
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					DatabaseController.getInstance().runPreparedStatement();
-
-
+					
 					//create text balloon
 					if(!text.isEmpty()) {
 						//the local player will get color1
 						createTextBalloon(text, color1);
 						s.setText("");
+						sendTextToDatabase(text);
 					}
 					//TODO send the text to the database
 				}
 			}
 		});
+	}
+	
+	private void sendTextToDatabase(String text){
+		//send the text to the database
+		//timestamp
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String timestamp = sdf.format(date);
+		//ResultSet rs = DatabaseController.getInstance().runQuery("Insert into chatregel values 'marijntje42', 511,'"+ timestamp+"','"+text+ "'");
+		DatabaseController.getInstance().startPreparedStatement("INSERT INTO chatregel (`Account_naam`, `Spel_ID`, `datetime`, `bericht`) VALUES ( ?, ?, ?, ?)");
+		PreparedStatement statement = DatabaseController.getInstance().getPreparedStatement();
+		try {
+			statement.setString(1, "marijntje42");
+			statement.setInt(2, 511);
+			statement.setString(3, timestamp);
+			statement.setString(4, text);
+			DatabaseController.getInstance().setPreparedStatement(statement);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		DatabaseController.getInstance().runPreparedStatement();
 	}
 }

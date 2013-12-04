@@ -5,13 +5,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.PreparedStatement;
 
 public class DatabaseController {
 	   private static DatabaseController instance = null;
 	   private String host,username,password,database;
 	   private Integer port = 3306;
-	   private PreparedStatement pstmt = null;
 	   Connection con = null;
 	   
 	   protected DatabaseController() {}
@@ -51,30 +49,6 @@ public class DatabaseController {
 			}
 			
 			return rs;
-	   }
-	   
-	   public void startPreparedStatement(String Query) {
-		   try {
-			   pstmt = con.prepareStatement(Query);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-	   }
-	   
-	   public PreparedStatement getPreparedStatement() {
-		   return pstmt;
-	   }
-	   
-	   public void setPreparedStatement(PreparedStatement pstmt) {
-		   pstmt = pstmt;
-	   }
-	   
-	   public void runPreparedStatement() {
-			try {
-				pstmt.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 	   }
 	   
 	   public DatabaseController setDatabase(String Database) {

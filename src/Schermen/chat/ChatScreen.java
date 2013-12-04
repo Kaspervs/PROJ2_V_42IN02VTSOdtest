@@ -9,15 +9,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.sql.PreparedStatement;
-//import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -33,20 +27,13 @@ import logics.ChatModel;
 import utils.ImageTool;
 import FormElements.TextFieldSL;
 import Schermen.GameScreen;
-import Main.DatabaseController;
-
 
 @SuppressWarnings("serial")
 public class ChatScreen extends JPanel implements Observer{
 	//View
 	private GameScreen _parent;
-	private Rectangle bounds = new Rectangle(1000, 74, 260, 600);
-	private JLabel avatar1, avatar2;
-	private Dimension avatarDimension = new Dimension(57,57);
-	
+	private Rectangle bounds = new Rectangle(1000, 184, 260, 600);
 	private TextFieldSL inputField = null;
-	private static final String AVATAR = "/Assets/Images/default-avatar.png";
-	
 	private JScrollPane sp;
 	private JPanel  textArea;
 	private ArrayList<ChatBalloon> chatBalloons = new ArrayList<ChatBalloon>();
@@ -59,8 +46,6 @@ public class ChatScreen extends JPanel implements Observer{
 	private JScrollBar verticalScrollBar;
 	private int scrollSpeed = 16;
 	
-	
-	
 	public ChatScreen(GameScreen p){
 		this._parent = p;
 		this.segoeUI_sb = _parent.getGui().seguisb();
@@ -69,7 +54,6 @@ public class ChatScreen extends JPanel implements Observer{
 		
 		this.setBackground(null);
 		
-		setAvatars();
 		sp = createScrollPane();
 		
 		textArea = createTextArea();
@@ -103,51 +87,16 @@ public class ChatScreen extends JPanel implements Observer{
 	
 	private void emptyChatBox(){
 		if(chatBalloons.size() == 0) return;
-		for(int i=0; i < chatBalloons.size(); i++){
-			textArea.remove(i);
-		}
-		chatBalloons = new ArrayList<ChatBalloon>();
-	}
-	
-	private void setAvatars(){
-		this.avatar1 = getAvatar(AVATAR);
-		this.avatar2 = getAvatar(AVATAR);
-		this.avatar2.setLocation(203, 0);
-		this.add(avatar1);
-		this.add(avatar2);
-	}
-	
-	private JLabel getAvatar(String url){
-		//Default avatar
-		File f = null;
-		BufferedImage bImg = null;
-		Image img = null;
-		ImageIcon imgIcon = null;
-		JLabel label = null;
-		try {
-			// get File
-			f = new File(getClass().getResource(url).toURI());
-			// read the file to an image
-			bImg = ImageIO.read(f);
-			//Resize the buffered image 
-			img = ImageTool.resize(ImageTool.toImage(bImg), avatarDimension.width, avatarDimension.height);
-			//set to icon
-			imgIcon = new ImageIcon(img);
-			//put it into a jlabel
-			label = new JLabel(imgIcon);
-			//set bounds
-			label.setBounds(0, 0, imgIcon.getIconWidth(), imgIcon.getIconHeight());
-		} catch (Exception e) {
-			e.printStackTrace(System.out);
-		}
 		
-		return label;
+		textArea.removeAll();
+		
+		chatBalloons = new ArrayList<ChatBalloon>();
 	}
 	
 	private JScrollPane createScrollPane() {
 		JScrollPane jsp = new JScrollPane(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-		Rectangle r = new Rectangle(0, 110, 260, 408);
+		Rectangle r = new Rectangle(0, 0, 260, 408);
 		
 		verticalScrollBar = new JScrollBar(JScrollBar.VERTICAL){
 			@Override
@@ -214,7 +163,7 @@ public class ChatScreen extends JPanel implements Observer{
 	private TextFieldSL createInputField(){
 		//Username Field
 		TextFieldSL f = new TextFieldSL("Chatterdy Chat :D");
-		Rectangle b = new Rectangle(0, 528, 260, 30);
+		Rectangle b = new Rectangle(0, 416, 260, 30);
 		f.setBounds(b);
 		f.setFont(segoeUI_sb);
 		f.setFont(new Font(f.getFont().getName(), Font.BOLD, 11));
@@ -242,26 +191,6 @@ public class ChatScreen extends JPanel implements Observer{
 					String text = s.getText().toString().trim();
 					System.out.println("Enter: "+ text);
 					//send the text to the database
-					//timestamp
-					Date date = new Date();
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					String timestamp = sdf.format(date);
-					//ResultSet rs = DatabaseController.getInstance().runQuery("Insert into chatregel values 'marijntje42', 511,'"+ timestamp+"','"+text+ "'");
-					DatabaseController.getInstance().startPreparedStatement("INSERT INTO chatregel (`Account_naam`, `Spel_ID`, `datetime`, `bericht`) VALUES ( ?, ?, ?, ?)");
-					PreparedStatement statement = DatabaseController.getInstance().getPreparedStatement();
-					try {
-						statement.setString(1, "marijntje42");
-						statement.setInt(2, 511);
-						statement.setString(3, timestamp);
-						statement.setString(4, text);
-						DatabaseController.getInstance().setPreparedStatement(statement);
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					DatabaseController.getInstance().runPreparedStatement();
-
-
 					//create text balloon
 					if(!text.isEmpty()) {
 						//the local player will get color1

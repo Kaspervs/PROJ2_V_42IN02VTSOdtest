@@ -1,7 +1,9 @@
 package Schermen;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Rectangle;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -11,7 +13,9 @@ import javax.swing.JPanel;
 
 import logics.LoginLogics;
 import logics.ManageWordsLogics;
+import FormElements.ColoredRectangle;
 import FormElements.MyButton;
+import FormElements.ScrollField;
 import FormElements.TextFieldSL;
 import Main.DatabaseController;
 import Main.FontController;
@@ -22,7 +26,7 @@ public class ManageWords extends JPanel {
 	private Gui _gui;
 	private ManageWordsLogics logics = new ManageWordsLogics(this);
 	private TextFieldSL tfNewWords;
-	
+	private ScrollField scrlField;
 	
 	public ManageWords(Gui gui){
 		
@@ -67,6 +71,19 @@ public class ManageWords extends JPanel {
 				btnCreateWord.setName("btnCreateWord");
 				btnCreateWord.addActionListener(logics);
 				this.add(btnCreateWord);
+				
+				//scrollpanel
+				scrlField = new ScrollField(new Dimension(200,300));
+				scrlField.setBounds(100, 200, 200, 300);
+				this.add(scrlField);
+				
+				/*for(int i = 0; i < 100; i++) {
+					JPanel test = new JPanel();
+					test.setPreferredSize(new Dimension(200,10));
+					scrlField.addElement(test);
+				}*/
+			
+				
 		
 	}
 	

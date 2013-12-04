@@ -6,10 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.mysql.jdbc.PreparedStatement;
+
 public class DatabaseController {
 	   private static DatabaseController instance = null;
 	   private String host,username,password,database;
 	   private Integer port = 3306;
+	   private PreparedStatement pstmt = null;
 	   Connection con = null;
 	   
 	   protected DatabaseController() {}
@@ -49,6 +52,46 @@ public class DatabaseController {
 			}
 			
 			return rs;
+	   }
+	   
+	   public void startPreparedStatement(String Query) {
+		   try {
+				con.prepareStatement(Query);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	   }
+	   
+	   public void pstmtSetNull(int id, int type) {
+		    try {
+		    	pstmt.setNull(id, type);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	   }
+	   
+	   public void pstmtSetString(int id, String string) {
+		    try {
+		    	pstmt.setString(id, string);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	   }
+	   
+	   public void pstmtSetInt(int id, int integer) {
+		    try {
+		    	pstmt.setInt(id, integer);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	   }
+	   
+	   public void runPreparedStatement() {
+			try {
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 	   }
 	   
 	   public DatabaseController setDatabase(String Database) {

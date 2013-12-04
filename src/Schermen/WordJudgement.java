@@ -42,12 +42,22 @@ public class WordJudgement extends JPanel {
 				//Button Managewords
 				
 				MyButton manageWordsbtn = new MyButton("Manage words");
-				manageWordsbtn.setBounds(693, 292, 101, 27);
+				manageWordsbtn.setBounds(500, 200, 300,50);
 				manageWordsbtn.setFont(FontController.getInstance().getFont("seguisb"));
 				manageWordsbtn.setFont(new Font(manageWordsbtn.getFont().getName(), Font.BOLD, 12));
 				manageWordsbtn.setName("manageWordsbtn");
 				manageWordsbtn.addActionListener(_gui.getMain().getBtnListner());
 				this.add(manageWordsbtn);
+				
+				//Button Critisize words
+				
+				MyButton critisizeWords = new MyButton("Critisize words");
+				critisizeWords.setBounds(500, 275, 300,50);
+				critisizeWords.setFont(FontController.getInstance().getFont("seguisb"));
+				critisizeWords.setFont(new Font(critisizeWords.getFont().getName(), Font.BOLD, 12));
+				critisizeWords.setName("critisizeWordsbtn");
+				critisizeWords.addActionListener(_gui.getMain().getBtnListner());
+				this.add(critisizeWords);
 	}
 	
 }

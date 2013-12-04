@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import logics.CompetitionLogic;
 import FormElements.ImageLabel;
 import FormElements.MyButton;
 import Main.Gui;
@@ -22,8 +23,10 @@ public class CompetitionManagement extends JPanel {
 	private Rectangle bounds = new Rectangle(20, 20, 20, 20);
 	private ArrayList<String> friends = new ArrayList<String>();
 	private ImageIcon icon;
+	private CompetitionLogic cL;
 	
 	public CompetitionManagement(Gui gui){
+		this.cL = new CompetitionLogic(this);
 		this._gui = gui;
 		this.setBackground(null);
 		this.setBounds(0, 0, gui.getWidth(), gui.getHeight());
@@ -38,6 +41,7 @@ public class CompetitionManagement extends JPanel {
 			ImageIcon iconi = new ImageIcon(getClass().getResource("/Assets/Images/default-avatar.png"));
 			ImageLabel il = new ImageLabel(gui, iconi, friend);
 			il.setLocation(425, 230+i);
+			cL.initLabelMouseListener(il);
 			this.add(il);
 			i += 65;
 		}
@@ -45,6 +49,7 @@ public class CompetitionManagement extends JPanel {
 		this.add(createButton("Edit", "btnEdit", new Rectangle(485, 650, 55, 27)));
 		this.add(createButton("Create", "btnCreate", new Rectangle(600, 650, 55, 27)));
 		this.add(createButton("Back", "btnBack", new Rectangle(660, 650, 55, 27)));
+		this.add(createButton("Logout", "btnLogout", new Rectangle(750, 670, 55, 27)));
 	}
 	
 	 private MyButton createButton(String text, String name, Rectangle bounds){
@@ -64,6 +69,7 @@ public class CompetitionManagement extends JPanel {
 	private void setFriends(){
 		this.friends.add("Henk");
 		this.friends.add("Seline");
+		this.friends.add("Thommes");
 	}
 	
 	private JLabel createTitle(String text) {

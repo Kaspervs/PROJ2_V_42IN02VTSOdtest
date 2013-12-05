@@ -8,6 +8,7 @@ import Schermen.chat.ChatScreen;
 import Schermen.gamescreen.GameField;
 import Schermen.gamescreen.Hand;
 import Schermen.score.ScoreScreen;
+import Schermen.turns.TurnScreen;
 
 public class GameScreen extends JPanel {
 	//View
@@ -16,6 +17,7 @@ public class GameScreen extends JPanel {
 	private ChatModel chatModel;
 	private GameField gameField;
 	private ScoreScreen scoreScreen;
+	private TurnScreen turnScreen;
 	private Hand gameHand;
 	
 	public GameScreen(Gui g){
@@ -23,13 +25,14 @@ public class GameScreen extends JPanel {
 		this.setBounds(0, 0, _gui.getWidth(), _gui.getHeight());
 		this.add(initChat());
 		this.setBackground(null);
+		this.add(initScoreScreen());
+		this.add(initTurnScreen());
 		initGameField();
-		initScoreScreen();
 	}
 	
-	private void initScoreScreen(){
+	private JPanel initScoreScreen(){
 		scoreScreen = new ScoreScreen(this);
-		this.add(scoreScreen);
+		return scoreScreen;
 	}
 	
 	private JPanel initChat(){
@@ -39,6 +42,11 @@ public class GameScreen extends JPanel {
 		chatModel.addObserver(chatScreen);
 		
 		return chatScreen; 
+	}
+	
+	private JPanel initTurnScreen(){
+		turnScreen = new TurnScreen(this);
+		return turnScreen;
 	}
 	
 	private void initGameField(){

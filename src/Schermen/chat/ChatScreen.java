@@ -210,7 +210,6 @@ public class ChatScreen extends JPanel implements Observer{
 						s.setText("");
 						sendTextToDatabase(text);
 					}
-					//TODO send the text to the database
 				}
 			}
 		});
@@ -223,16 +222,16 @@ public class ChatScreen extends JPanel implements Observer{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String timestamp = sdf.format(date);
 		//ResultSet rs = DatabaseController.getInstance().runQuery("Insert into chatregel values 'marijntje42', 511,'"+ timestamp+"','"+text+ "'");
-		DatabaseController.getInstance().startPreparedStatement("INSERT INTO chatregel (`Account_naam`, `Spel_ID`, `datetime`, `bericht`) VALUES ( ?, ?, ?, ?)");
+		DatabaseController.getInstance().startPreparedStatement("INSERT INTO chatregel (`Account_naam`, `Spel_ID`, `tijdstip`, `bericht`) VALUES ( ?, ?, ?, ?)");
 		PreparedStatement statement = DatabaseController.getInstance().getPreparedStatement();
 		try {
+			//TODO naam en Spel ID zetten
 			statement.setString(1, "marijntje42");
 			statement.setInt(2, 511);
 			statement.setString(3, timestamp);
 			statement.setString(4, text);
 			DatabaseController.getInstance().setPreparedStatement(statement);
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		DatabaseController.getInstance().runPreparedStatement();

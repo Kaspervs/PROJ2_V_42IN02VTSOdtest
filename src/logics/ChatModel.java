@@ -64,8 +64,7 @@ public class ChatModel extends Observable {
 	private void getResultSet(){
 		ResultSet rs = DatabaseController.getInstance().runQuery("SELECT * FROM chatregel AS cr"+ 
 				" WHERE cr.Spel_ID = 511 "+ 
-				" AND cr.datetime >= '"+startDate+"' ORDER BY cr.datetime DESC "+
-				" LIMIT 0, 10");
+				" AND cr.tijdstip >= '"+startDate+"' ORDER BY cr.tijdstip ASC ");
 		
 		if(rs == null) return;
 		
@@ -92,7 +91,7 @@ public class ChatModel extends Observable {
 			
 			while(rs.next()){
 				//Add the date to the ArrayList
-				String date = rs.getString("datetime");
+				String date = rs.getTimestamp("tijdstip").toString();
 				dates.add(date);
 				
 				//Add the message to the ArrayList

@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public abstract class ImageTool {
 
@@ -244,6 +249,33 @@ public abstract class ImageTool {
             }
         }
         return toImage(bimg);
+    }
+    
+    public static JLabel getImageLabel(String url, int width, int height){
+    	File f = null;
+		BufferedImage bImg = null;
+		Image img = null;
+		ImageIcon imgIcon = null;
+		JLabel label = null;
+		try {
+			// get File
+			f = new File(ImageTool.class.getResource(url).toURI());
+			System.out.println("file : "+ f);
+			// read the file to an image
+			bImg = ImageIO.read(f);
+			//Resize the buffered image 
+			img = ImageTool.resize(ImageTool.toImage(bImg), width, height);
+			//set to icon
+			imgIcon = new ImageIcon(img);
+			//put it into a jlabel
+			label = new JLabel(imgIcon);
+			//set bounds
+			label.setBounds(0, 0, imgIcon.getIconWidth(), imgIcon.getIconHeight());
+		} catch (Exception e) {
+			e.printStackTrace(System.out);
+		}
+		
+		return label;
     }
 
 }

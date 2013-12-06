@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 public class TextFieldSL extends JTextField implements FocusListener {
 	private boolean firstFocus = false;
 	private String originalText;
+	private boolean focusActive = true;
 	
 	public TextFieldSL(String text) {
 		this.originalText = text;
@@ -25,17 +26,33 @@ public class TextFieldSL extends JTextField implements FocusListener {
 
 	@Override
 	public void focusGained(FocusEvent e) {
-		if(!firstFocus) {
-			this.firstFocus = true;
-			this.setText("");
+		if(focusActive)
+		{
+			if(!firstFocus) {
+				this.firstFocus = true;
+				this.setText("");
+			}
 		}
+		
 	}
 
 	@Override
 	public void focusLost(FocusEvent e) {
-		if(this.getText().equals("")) {
-			this.setText(this.originalText);
-			this.firstFocus = false;
+		if(focusActive)
+		{
+			if(this.getText().equals("")) {
+				this.setText(this.originalText);
+				this.firstFocus = false;
+			}
 		}
 	}
+
+	public void setFocusStatus(boolean bool)
+	{
+		focusActive=bool;
+	}
+
+	
+	
+	
 }

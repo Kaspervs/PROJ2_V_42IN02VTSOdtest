@@ -117,6 +117,7 @@ public class ManageWords extends JPanel {
 				tfEditWord.setBounds(1000, 250, 250, 30);
 				tfEditWord.setFont(FontController.getInstance().getFont("seguisb"));
 				tfEditWord.setFont(new Font(tfEditWord.getFont().getName(), Font.BOLD, 16));
+				tfEditWord.setFocusStatus(false);
 				this.add(tfEditWord);
 				
 				//create edit word button update
@@ -159,7 +160,7 @@ public class ManageWords extends JPanel {
 						//create word label
 						JLabel wordLabel = new JLabel(result.getString("woord"));
 						wordLabel.setForeground(Color.white);
-						wordLabel.setBounds(0,0,200,50);
+						wordLabel.setBounds(0,0,550,50);
 						wordLabel.setFont(FontController.getInstance().getFont("segoeuil"));
 						wordLabel.setFont(new Font(wordLabel.getFont().getName(), Font.BOLD, 20));
 						//add label to panel
@@ -208,6 +209,14 @@ public class ManageWords extends JPanel {
 	
 	public String getNewWordsTF() {
 		return this.tfNewWords.getText();
+	}
+	
+	public void setEditWordTextField(String text){
+		this.tfEditWord.setText(text);
+	}
+	
+	public String getEditWordTextField(){
+		return tfEditWord.getText();
 	}
 	
 	public void emptyText(){

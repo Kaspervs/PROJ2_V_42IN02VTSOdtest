@@ -84,11 +84,22 @@ public class ManageWordsLogics implements ActionListener{
 			case "waanders":
 				break;
 			default:
+				editWord(source.getName());
 				break;
 			
 		
 		}
 				
+	}
+	
+	private void editWord(String word){
+		
+		//Check if word is from editbutton of wordlist
+		if(word.startsWith("btnWordOutList"))
+		{
+			String[] splittedString = word.split("#");
+			//blabla textfield  = splittedString[1].toString();
+		}
 	}
 	
 	

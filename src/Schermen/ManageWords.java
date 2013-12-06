@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -25,7 +26,7 @@ import Main.Gui;
 public class ManageWords extends JPanel {
 	private Gui _gui;
 	private ManageWordsLogics logics = new ManageWordsLogics(this);
-	private TextFieldSL tfNewWords;
+	private TextFieldSL tfNewWords, tfSearchField, tfEditWords;
 	private ScrollField scrlField;
 	
 	public ManageWords(Gui gui){
@@ -40,13 +41,38 @@ public class ManageWords extends JPanel {
 				AvansLabel.setBounds(20,gui.getHeight() - 21 - AvansLogo.getIconHeight(), AvansLogo.getIconWidth(), AvansLogo.getIconHeight());
 				this.add(AvansLabel);
 				
-				//welkom tekst
-				JLabel welkomText = new JLabel("Manage words");
+				//welkom tekst moderator
+				JLabel welkomText = new JLabel("Moderator");
 				welkomText.setForeground(Color.white);
-				welkomText.setBounds(500,120,350,55);
+				welkomText.setBounds(450,120,350,55);
 				welkomText.setFont(FontController.getInstance().getFont("segoeuil"));
 				welkomText.setFont(new Font(welkomText.getFont().getName(), Font.PLAIN, 42));
 				this.add(welkomText);	
+				
+				//welkom tekst lbledit
+				JLabel lblEditText = new JLabel("Edit");
+				lblEditText.setForeground(Color.white);
+				lblEditText.setBounds(450,175,200,55);
+				lblEditText.setFont(FontController.getInstance().getFont("segoeuil"));
+				lblEditText.setFont(new Font(lblEditText.getFont().getName(), Font.BOLD, 25));
+				this.add(lblEditText);	
+				
+				//create search label
+				tfSearchField = new TextFieldSL("Search");
+				tfSearchField.setBounds(720, 140, 200, 30);
+				tfSearchField.setFont(FontController.getInstance().getFont("seguisb"));
+				tfSearchField.setFont(new Font(tfSearchField.getFont().getName(), Font.BOLD, 12));
+				this.add(tfSearchField);
+				
+				//create button search
+				ImageIcon editLogo = new ImageIcon(getClass().getResource("/Assets/Images/edit.png")); //hier moet nog ander plaatje in
+				JButton searchButton = new JButton(editLogo);
+				searchButton.setBackground(Color.WHITE);
+				searchButton.setBounds(925, 140, 30, 30);
+				searchButton.setName("btnSearch");
+				//addclickevent
+				searchButton.addActionListener(logics);
+				this.add(searchButton);
 				
 				//create new words label
 				JLabel createWords = new JLabel("Create new words");
@@ -72,6 +98,9 @@ public class ManageWords extends JPanel {
 				btnCreateWord.addActionListener(logics);
 				this.add(btnCreateWord);
 				
+				//add label edit words (right side of screen)
+				
+				
 				
 			FillWordList();
 		
@@ -83,18 +112,18 @@ public class ManageWords extends JPanel {
 		
 				//scrollpanel
 				
-				ScrollField sf = new ScrollField(new Dimension(200,500));
-				sf.setBounds(520,200,200,500);
+				ScrollField sf = new ScrollField(new Dimension(600,400));
+				sf.setBounds(350,220,600,400);
 				
 				//load words from database
-				ResultSet result = DatabaseController.getInstance().runQuery("SELECT woord FROM woordenboek WHERE status='Pending' order by woord asc");
+				ResultSet result = DatabaseController.getInstance().runQuery("SELECT woord FROM woordenboek order by woord asc");
 				try {
 								
 					
 					while (result.next())
 					{
 						//create word panel			
-						ColoredRectangle wordPanel = new ColoredRectangle(new Rectangle(200,50), Color.gray);
+						ColoredRectangle wordPanel = new ColoredRectangle(new Rectangle(sf.getWidth(),50), Color.gray);
 						//create word label
 						JLabel wordLabel = new JLabel(result.getString("woord"));
 						wordLabel.setForeground(Color.white);
@@ -104,11 +133,18 @@ public class ManageWords extends JPanel {
 						//add label to panel
 						wordPanel.add(wordLabel);
 						
-						//create edit labelimage
+						//create edit buttonimage
 						ImageIcon editLogo = new ImageIcon(getClass().getResource("/Assets/Images/edit.png"));
-						JLabel EditLabel = new JLabel(editLogo);
-						EditLabel.setBounds(wordPanel.getWidth()-(editLogo.getIconWidth()+10),wordPanel.getHeight() - 10 - editLogo.getIconHeight(), editLogo.getIconWidth(), editLogo.getIconHeight());
-						wordPanel.add(EditLabel);
+						JButton editButton = new JButton(editLogo);
+						editButton.setBackground(Color.gray);
+						editButton.setBounds(wordPanel.getWidth()-(editLogo.getIconWidth()+10),wordPanel.getHeight() - 15 - editLogo.getIconHeight(), editLogo.getIconWidth()+2, editLogo.getIconHeight()+2);
+						editButton.setName("btnWordOutList#"+result.getString("woord"));
+						//addclickevent
+						editButton.addActionListener(logics);
+						
+						
+						//add editlabel to wordpanel
+						wordPanel.add(editButton);
 						
 						wordPanel.setLayout(null);
 						//add wordpanel to scollfield

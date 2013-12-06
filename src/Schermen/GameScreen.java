@@ -1,5 +1,10 @@
 package Schermen;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import logics.ChatModel;
@@ -19,6 +24,8 @@ public class GameScreen extends JPanel {
 	private ScoreScreen scoreScreen;
 	private TurnScreen turnScreen;
 	private Hand gameHand;
+	private JLabel backButton;
+	private ImageIcon backBtnImage = new ImageIcon(GameScreen.class.getResource("/Assets/Images/backBtn.png"));
 	
 	public GameScreen(Gui g){
 		this._gui = g;
@@ -27,6 +34,7 @@ public class GameScreen extends JPanel {
 		//this.add(initChat());
 		this.add(initScoreScreen());
 		this.add(initTurnScreen());
+		this.add(addBackButton());
 		initGameField();
 	}
 	
@@ -48,6 +56,34 @@ public class GameScreen extends JPanel {
 		turnScreen = new TurnScreen(this);
 		return turnScreen;
 	}
+	
+	private JLabel addBackButton(){
+		backButton = new JLabel();
+		backButton.setIcon(backBtnImage);
+		backButton.setBounds(20, 26, 35, 35);
+		backButton.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("return to Game overzicht");
+				//_gui.changeScreen(new ObserverSelectgame(_gui));
+			}
+		});
+		return backButton;		
+	}
+	
 	
 	private void initGameField(){
 		gameField = new GameField(this);

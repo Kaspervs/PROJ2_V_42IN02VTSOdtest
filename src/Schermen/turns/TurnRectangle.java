@@ -17,6 +17,7 @@ public class TurnRectangle extends ColoredRectangle{
 	private JLabel avatar;
 	private String url = "/Assets/Images/default-avatar.png";
 	private Font font; 
+	private int gameID = 0;
 	public TurnRectangle(Rectangle rect, Color color){
 		super(rect, color);
 		font = FontController.getInstance().getSegoeSemiBold();
@@ -38,5 +39,13 @@ public class TurnRectangle extends ColoredRectangle{
 	
 	public void setLabelText(String name, int playedGames, int wins, int loses){
 		text.setText("<html>Playing with "+name+"<br>Played "+playedGames+" games,<br>"+wins+" wins and "+loses+" loses</html>");
+	}
+
+	public int getGameID() {
+		return gameID;
+	}
+
+	public void setGameID(int gameID) {
+		this.gameID = gameID;
 	}
 }

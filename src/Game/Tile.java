@@ -14,7 +14,9 @@ import Main.FontController;
 @SuppressWarnings("serial")
 public class Tile extends JPanel {
 	private GameLetter gl;
-	
+	private String text;
+	private final static String EMPTY_VALUE = "--";
+	private final static String START_VALUE = "*";
 	public Tile(Color bgcolor) {
 		this.setBackground(null);
 		this.setBounds(0, 0, 34, 34);
@@ -23,11 +25,11 @@ public class Tile extends JPanel {
 		this.add(gl);
 	}
 	
-	public Tile(Color bgcolor, String text) {
+	public Tile(Color bgcolor, String txt) {
 		this.setBackground(null);
 		this.setBounds(0, 0, 34, 34);
+		this.text = txt.equals(EMPTY_VALUE) || txt.equals(START_VALUE) ? "" : txt;
 		
-
 		JLabel contentText = new JLabel(text, SwingConstants.CENTER);
 		contentText.setForeground(Color.white);
 		contentText.setBounds(0,0,34,34);

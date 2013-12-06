@@ -105,9 +105,9 @@ public class ManageWords extends JPanel {
 						wordPanel.add(wordLabel);
 						
 						//create edit labelimage
-						ImageIcon editLogo = new ImageIcon(getClass().getResource("/Assets/Images/Avans-logo.png"));
+						ImageIcon editLogo = new ImageIcon(getClass().getResource("/Assets/Images/edit.png"));
 						JLabel EditLabel = new JLabel(editLogo);
-						EditLabel.setBounds(10,wordPanel.getHeight() - 10 - editLogo.getIconHeight(), editLogo.getIconWidth(), editLogo.getIconHeight());
+						EditLabel.setBounds(wordPanel.getWidth()-(editLogo.getIconWidth()+10),wordPanel.getHeight() - 10 - editLogo.getIconHeight(), editLogo.getIconWidth(), editLogo.getIconHeight());
 						wordPanel.add(EditLabel);
 						
 						wordPanel.setLayout(null);

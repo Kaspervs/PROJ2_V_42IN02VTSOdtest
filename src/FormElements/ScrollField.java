@@ -70,4 +70,10 @@ public class ScrollField extends JPanel {
 	public void setScrollSpeeld(int scrollspeed) {
 		this.scrollSpeed = scrollspeed;
 	}
+	
+	public void removeAllElements(){
+		
+	this.cp.removeAll();
+		
+	}
 }

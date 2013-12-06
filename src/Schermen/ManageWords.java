@@ -26,8 +26,8 @@ import Main.Gui;
 public class ManageWords extends JPanel {
 	private Gui _gui;
 	private ManageWordsLogics logics = new ManageWordsLogics(this);
-	private TextFieldSL tfNewWords, tfSearchField, tfEditWords;
-	private ScrollField scrlField;
+	private TextFieldSL tfNewWords, tfSearchField, tfEditWord;
+	private ScrollField sf;
 	
 	public ManageWords(Gui gui){
 		
@@ -41,10 +41,16 @@ public class ManageWords extends JPanel {
 				AvansLabel.setBounds(20,gui.getHeight() - 21 - AvansLogo.getIconHeight(), AvansLogo.getIconWidth(), AvansLogo.getIconHeight());
 				this.add(AvansLabel);
 				
+				//create scrollfield
+				
+				sf = new ScrollField(new Dimension(600,400));
+				sf.setBounds(300,220,600,400);
+				
+				
 				//welkom tekst moderator
 				JLabel welkomText = new JLabel("Moderator");
 				welkomText.setForeground(Color.white);
-				welkomText.setBounds(450,120,350,55);
+				welkomText.setBounds(400,120,350,55);
 				welkomText.setFont(FontController.getInstance().getFont("segoeuil"));
 				welkomText.setFont(new Font(welkomText.getFont().getName(), Font.PLAIN, 42));
 				this.add(welkomText);	
@@ -52,23 +58,23 @@ public class ManageWords extends JPanel {
 				//welkom tekst lbledit
 				JLabel lblEditText = new JLabel("Edit");
 				lblEditText.setForeground(Color.white);
-				lblEditText.setBounds(450,175,200,55);
+				lblEditText.setBounds(400,175,200,55);
 				lblEditText.setFont(FontController.getInstance().getFont("segoeuil"));
 				lblEditText.setFont(new Font(lblEditText.getFont().getName(), Font.BOLD, 25));
 				this.add(lblEditText);	
 				
-				//create search label
+				//create search textfield
 				tfSearchField = new TextFieldSL("Search");
-				tfSearchField.setBounds(720, 140, 200, 30);
+				tfSearchField.setBounds(650, 140, 210, 30);
 				tfSearchField.setFont(FontController.getInstance().getFont("seguisb"));
-				tfSearchField.setFont(new Font(tfSearchField.getFont().getName(), Font.BOLD, 12));
+				tfSearchField.setFont(new Font(tfSearchField.getFont().getName(), Font.BOLD, 20));
 				this.add(tfSearchField);
 				
 				//create button search
 				ImageIcon editLogo = new ImageIcon(getClass().getResource("/Assets/Images/edit.png")); //hier moet nog ander plaatje in
 				JButton searchButton = new JButton(editLogo);
 				searchButton.setBackground(Color.WHITE);
-				searchButton.setBounds(925, 140, 30, 30);
+				searchButton.setBounds(870, 140, 30, 30);
 				searchButton.setName("btnSearch");
 				//addclickevent
 				searchButton.addActionListener(logics);
@@ -83,10 +89,10 @@ public class ManageWords extends JPanel {
 				this.add(createWords);	
 				
 				//new words inputfield
-				tfNewWords = new TextFieldSL("Create new word");
+				tfNewWords = new TextFieldSL("Appel");
 				tfNewWords.setBounds(50, 250, 170, 30);
 				tfNewWords.setFont(FontController.getInstance().getFont("seguisb"));
-				tfNewWords.setFont(new Font(tfNewWords.getFont().getName(), Font.BOLD, 12));
+				tfNewWords.setFont(new Font(tfNewWords.getFont().getName(), Font.BOLD, 16));
 				this.add(tfNewWords);
 				
 				//add new word button
@@ -99,6 +105,37 @@ public class ManageWords extends JPanel {
 				this.add(btnCreateWord);
 				
 				//add label edit words (right side of screen)
+				JLabel lblEditWord = new JLabel("Edit word");
+				lblEditWord.setForeground(Color.white);
+				lblEditWord.setBounds(1000,205,260,55);
+				lblEditWord.setFont(FontController.getInstance().getFont("segoeuil"));
+				lblEditWord.setFont(new Font(lblEditWord.getFont().getName(), Font.BOLD, 20));
+				this.add(lblEditWord);	
+				
+				//create textfield for edit word
+				tfEditWord = new TextFieldSL("");
+				tfEditWord.setBounds(1000, 250, 250, 30);
+				tfEditWord.setFont(FontController.getInstance().getFont("seguisb"));
+				tfEditWord.setFont(new Font(tfEditWord.getFont().getName(), Font.BOLD, 16));
+				this.add(tfEditWord);
+				
+				//create edit word button update
+				MyButton btnUpdate = new MyButton("Update");
+				btnUpdate.setBounds(1000, 285, 100, 25);
+				btnUpdate.setFont(FontController.getInstance().getFont("seguisb"));
+				btnUpdate.setFont(new Font(btnUpdate.getFont().getName(), Font.BOLD, 12));
+				btnUpdate.setName("btnUpdate");
+				btnUpdate.addActionListener(logics);
+				this.add(btnUpdate);
+				
+				//create  word button delete
+				MyButton btnDelete = new MyButton("Delete");
+				btnDelete.setBounds(this.getWidth()-130, 285, 100, 25);
+				btnDelete.setFont(FontController.getInstance().getFont("seguisb"));
+				btnDelete.setFont(new Font(btnDelete.getFont().getName(), Font.BOLD, 12));
+				btnDelete.setName("btnDelete");
+				btnDelete.addActionListener(logics);
+				this.add(btnDelete);
 				
 				
 				
@@ -107,13 +144,8 @@ public class ManageWords extends JPanel {
 	}
 	
 	public void FillWordList(){
-		
-		
-		
-				//scrollpanel
 				
-				ScrollField sf = new ScrollField(new Dimension(600,400));
-				sf.setBounds(350,220,600,400);
+				
 				
 				//load words from database
 				ResultSet result = DatabaseController.getInstance().runQuery("SELECT woord FROM woordenboek order by woord asc");
@@ -158,53 +190,19 @@ public class ManageWords extends JPanel {
 					e1.printStackTrace();
 				}
 
-				
-				
+			
 				
 				this.add(sf);
 				
-			
+				
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-//		
-//		//scrollpanel
-//		
-//		ScrollField sf = new ScrollField(new Dimension(200,500));
-//		sf.setBounds(520,200,200,500);
-//		
-//		//load words from database
-//		
-//
-//		
-//		for(int i = 0; i < 10; i++) {  
-//			ColoredRectangle word = new ColoredRectangle(new Rectangle(200,50), Color.gray);
-//
-//			//create  label
-//			JLabel test = new JLabel("wordeen");
-//			test.setForeground(Color.white);
-//			test.setBounds(0,0,200,50);
-//			test.setFont(FontController.getInstance().getFont("segoeuil"));
-//			test.setFont(new Font(test.getFont().getName(), Font.BOLD, 20));
-//			word.add(test);
-//			
-//			
-//			
-//			word.setLayout(null);
-//			sf.addElement(word);  
-//	    } 
-//		
-//		this.add(sf);
-		
+	}
+	
+	public void refreshScrollObjects(){
+		//remove all elements
+		sf.removeAllElements();
+		//refill wordlist
+		FillWordList();
 		
 	}
 	

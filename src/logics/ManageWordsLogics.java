@@ -32,54 +32,9 @@ public class ManageWordsLogics implements ActionListener{
 		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(source);
 		switch (source.getName()) {
 			case "btnCreateWord":
-				//kijken of wel een woord is en geen lege text
-			
-				if(_manageWords.getNewWordsTF().isEmpty()||_manageWords.getNewWordsTF().contains("Create new word"))
-				{
-				 this._manageWords.getGui().showMessage("No word entered");
-				}
-				else if(_manageWords.getNewWordsTF().contains(" "))
-				{
-					this._manageWords.getGui().showMessage("The word must be written without any spaces.");
-				}
-				else
-				{
-					//kijken of woord nog niet bestaat
-					ResultSet result = DatabaseController.getInstance().runQuery("SELECT * FROM woordenboek WHERE woord='"+_manageWords.getNewWordsTF()+ "'");
-					try {
-						boolean Exist = false;
-						while(result.next()) {
-							Exist = true;
-						}
-						if(Exist==false)
-						{
-								//word doesn't exists.
-							 //Add word to db
-							if(sendWordtoDB(_manageWords.getNewWordsTF().toLowerCase(), "Accepted"))
-							{
-								_manageWords.getGui().showMessage("Word succesfully added.");
-								//empty textfield
-								_manageWords.emptyText(); 
-							}
-							else
-							{
-								_manageWords.getGui().showMessage("Error trying to add the word.");
-							}
-							//toevoegen db
-						}
-						else
-						{
-							
-								_manageWords.getGui().showMessage("The word you entered already exists.");
-						}
-						
-						
-					}
-					catch (SQLException e1) {
-						// TODO Auto-generated catch block
-					e1.printStackTrace();
-					}
-				}
+				createWord();
+				break;
+			case "btnUpdate":
 				break;
 			case "waanders":
 				break;
@@ -118,6 +73,61 @@ public class ManageWordsLogics implements ActionListener{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			return false;
+		}
+		
+	}
+	
+	private void createWord(){
+		
+		//kijken of wel een woord is en geen lege text
+		
+		if(_manageWords.getNewWordsTF().isEmpty()||_manageWords.getNewWordsTF().contains("Create new word"))
+		{
+		 this._manageWords.getGui().showMessage("No word entered");
+		}
+		else if(_manageWords.getNewWordsTF().contains(" "))
+		{
+			this._manageWords.getGui().showMessage("The word must be written without any spaces.");
+		}
+		else
+		{
+			//kijken of woord nog niet bestaat
+			ResultSet result = DatabaseController.getInstance().runQuery("SELECT * FROM woordenboek WHERE woord='"+_manageWords.getNewWordsTF()+ "'");
+			try {
+				boolean Exist = false;
+				while(result.next()) {
+					Exist = true;
+				}
+				if(Exist==false)
+				{
+						//word doesn't exists.
+					 //Add word to db
+					if(sendWordtoDB(_manageWords.getNewWordsTF().toLowerCase(), "Accepted"))
+					{
+						_manageWords.getGui().showMessage("Word succesfully added.");
+						//empty textfield
+						_manageWords.emptyText(); 
+						//wordlist refreshen
+						_manageWords.refreshScrollObjects();
+					}
+					else
+					{
+						_manageWords.getGui().showMessage("Error trying to add the word.");
+					}
+					//toevoegen db
+				}
+				else
+				{
+					
+						_manageWords.getGui().showMessage("The word you entered already exists.");
+				}
+				
+				
+			}
+			catch (SQLException e1) {
+				// TODO Auto-generated catch block
+			e1.printStackTrace();
+			}
 		}
 		
 	}

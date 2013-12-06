@@ -72,23 +72,100 @@ public class ManageWords extends JPanel {
 				btnCreateWord.addActionListener(logics);
 				this.add(btnCreateWord);
 				
+				
+			FillWordList();
+		
+	}
+	
+	public void FillWordList(){
+		
+		
+		
 				//scrollpanel
 				
 				ScrollField sf = new ScrollField(new Dimension(200,500));
-				sf.setBounds(400,200,200,300);
+				sf.setBounds(520,200,200,500);
 				
-				
-				
+				//load words from database
+				ResultSet result = DatabaseController.getInstance().runQuery("SELECT woord FROM woordenboek WHERE status='Pending' order by woord asc");
+				try {
+								
+					
+					while (result.next())
+					{
+						//create word panel			
+						ColoredRectangle wordPanel = new ColoredRectangle(new Rectangle(200,50), Color.gray);
+						//create word label
+						JLabel wordLabel = new JLabel(result.getString("woord"));
+						wordLabel.setForeground(Color.white);
+						wordLabel.setBounds(0,0,200,50);
+						wordLabel.setFont(FontController.getInstance().getFont("segoeuil"));
+						wordLabel.setFont(new Font(wordLabel.getFont().getName(), Font.BOLD, 20));
+						//add label to panel
+						wordPanel.add(wordLabel);
+						
+						//create wordbutton
+						
+						
+						wordPanel.setLayout(null);
+						//add wordpanel to scollfield
+						sf.addElement(wordPanel);  
+
+					}
+					
+				}
+				catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
 				
-				for(int i = 0; i < 20; i++) {  
-					ColoredRectangle temp = new ColoredRectangle(new Rectangle(200,50), Color.red);
-					temp.setLayout(null);
-					sf.addElement(temp);  
-			    } 
+				
 				
 				this.add(sf);
 				
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		
+//		//scrollpanel
+//		
+//		ScrollField sf = new ScrollField(new Dimension(200,500));
+//		sf.setBounds(520,200,200,500);
+//		
+//		//load words from database
+//		
+//
+//		
+//		for(int i = 0; i < 10; i++) {  
+//			ColoredRectangle word = new ColoredRectangle(new Rectangle(200,50), Color.gray);
+//
+//			//create  label
+//			JLabel test = new JLabel("wordeen");
+//			test.setForeground(Color.white);
+//			test.setBounds(0,0,200,50);
+//			test.setFont(FontController.getInstance().getFont("segoeuil"));
+//			test.setFont(new Font(test.getFont().getName(), Font.BOLD, 20));
+//			word.add(test);
+//			
+//			
+//			
+//			word.setLayout(null);
+//			sf.addElement(word);  
+//	    } 
+//		
+//		this.add(sf);
+		
 		
 	}
 	

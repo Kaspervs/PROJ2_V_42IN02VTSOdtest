@@ -32,7 +32,7 @@ public class ScoreScreen extends JPanel {
 		this._parent = p;
 		this.setBounds(bounds);
 		System.out.println(" Score ");
-		//this.setBackground(null);
+		this.setBackground(null);
 		setAvatars();
 		initLabels();
 	}
@@ -43,7 +43,7 @@ public class ScoreScreen extends JPanel {
 		this.add(tilesLeft);
 		
 		score = createLabel("0 - 0", FontController.getInstance().getSegoeLight(), 42);
-		score.setBounds(64 ,64, 133, 47);
+		score.setBounds(64 ,58, 133, 47);
 		score.setHorizontalAlignment( SwingConstants.CENTER );
 		this.add(score);
 		
@@ -61,7 +61,7 @@ public class ScoreScreen extends JPanel {
 		JLabel l = new JLabel(text);
 		l.setForeground(Color.WHITE);
 		l.setFont(f);
-		l.setFont(new Font(l.getFont().getName(), Font.BOLD, size));
+		l.setFont(new Font(l.getFont().getName(), Font.TRUETYPE_FONT, size));
 		return l;
 	}
 	

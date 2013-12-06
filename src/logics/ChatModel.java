@@ -33,7 +33,7 @@ public class ChatModel extends Observable {
 	private ArrayList<String> messages = new ArrayList<String>();
 	private ArrayList<String> dates = new ArrayList<String>();
 	private ArrayList<String> names = new ArrayList<String>();
-	
+	private int timeToWait = 5000;
 	
 	public ChatModel(){
 		setStartDate();
@@ -56,7 +56,7 @@ public class ChatModel extends Observable {
 				getResultSet();
 			}
 		};
-		Timer timer = new Timer(1000, taskPerformer);
+		Timer timer = new Timer(timeToWait, taskPerformer);
 		timer.setRepeats(true);
 		timer.start();
 	}

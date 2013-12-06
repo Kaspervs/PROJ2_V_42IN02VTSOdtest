@@ -23,8 +23,8 @@ public class GameScreen extends JPanel {
 	public GameScreen(Gui g){
 		this._gui = g;
 		this.setBounds(0, 0, _gui.getWidth(), _gui.getHeight());
-		this.add(initChat());
 		this.setBackground(null);
+		//this.add(initChat());
 		this.add(initScoreScreen());
 		this.add(initTurnScreen());
 		initGameField();

@@ -19,14 +19,14 @@ public class ChatBalloon extends JLabel {
 	
 	public ChatBalloon(String text, Color color, Font font){
 		setFont(font);
-		setFont(new Font(getFont().getName(), Font.BOLD, 11));
+		setFont(new Font(getFont().getName(), Font.TRUETYPE_FONT, 11));
 		setForeground(new Color(255,255,255));// font color
 		createBalloon(text, ft.format(_date), color, font.getName());
 		
 	}
 	public ChatBalloon(String text, String date, Color color, Font font){
 		setFont(font);
-		setFont(new Font(getFont().getName(), Font.BOLD, 11));
+		setFont(new Font(getFont().getName(), Font.TRUETYPE_FONT, 11));
 		setForeground(new Color(255,255,255));// font color
 		try {
 			createBalloon(text, modifyDateLayout(date), color, font.getName());

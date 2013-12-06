@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import Schermen.GameScreen;
 import Schermen.Login;
 import Schermen.ObserverSelectgame;
+import Schermen.Register;
 
 
 @SuppressWarnings("serial")

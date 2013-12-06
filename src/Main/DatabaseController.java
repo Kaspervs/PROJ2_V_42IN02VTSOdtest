@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.mysql.jdbc.PreparedStatement;
+
 public class DatabaseController {
 	   private static DatabaseController instance = null;
 	   private String host,username,password,database;
@@ -49,6 +51,22 @@ public class DatabaseController {
 			}
 			
 			return rs;
+	   }
+	   
+	   public PreparedStatement insertQuery(String statement){
+		    java.sql.PreparedStatement pstmt = null;
+
+		   try {
+			   pstmt = con.prepareStatement(statement);
+			   pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+		   
 	   }
 	   
 	   public DatabaseController setDatabase(String Database) {

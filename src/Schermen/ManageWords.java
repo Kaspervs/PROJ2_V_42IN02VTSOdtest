@@ -104,8 +104,11 @@ public class ManageWords extends JPanel {
 						//add label to panel
 						wordPanel.add(wordLabel);
 						
-						//create wordbutton
-						
+						//create edit labelimage
+						ImageIcon editLogo = new ImageIcon(getClass().getResource("/Assets/Images/Avans-logo.png"));
+						JLabel EditLabel = new JLabel(editLogo);
+						EditLabel.setBounds(10,wordPanel.getHeight() - 10 - editLogo.getIconHeight(), editLogo.getIconWidth(), editLogo.getIconHeight());
+						wordPanel.add(EditLabel);
 						
 						wordPanel.setLayout(null);
 						//add wordpanel to scollfield

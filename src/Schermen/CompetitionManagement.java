@@ -31,25 +31,18 @@ public class CompetitionManagement extends JPanel {
 	private ScrollField sF = new ScrollField(new Dimension(500,500));
 
 	public CompetitionManagement(Gui gui){
-		sF.setBounds(425,250,350,300);
-		JPanel test = new JPanel();
-		test.setBounds(20, 20, 2000, 2000);
-		test.setLocation(25,25);
-		test.setBackground(Color.green);
-		sF.addElement(test);
-		this.add(sF);
-		/*this.competitionLogics = new CompetitionLogic(this);
+		this.competitionLogics = new CompetitionLogic(this);
 		alImageLabel = new ArrayList<ImageLabel>();
 		this._gui = gui;
 		this.setBackground(null);
 		this.setBounds(0, 0, gui.getWidth(), gui.getHeight());
 		this.setLayout(null);
 		setFriends();
-		sF.add(test);
+		//sF.add(test);
 
 		//Create layout
 		this.add(createTitle("New Game"));
-		createFriendsList(this,"Friends");*/
+		createFriendsList(this,"Friends");
 		//int i = 0;
 		/*for(String friend : friends){
 			JPanel field = new JPanel();
@@ -65,11 +58,20 @@ public class CompetitionManagement extends JPanel {
 			//i += 65;
 		}
 		this.add(sF);*/
-		/*this.add(createButton("Add", "btnAdd", new Rectangle(425, 650, 55, 27)));
+		this.add(createButton("Add", "btnAdd", new Rectangle(425, 650, 55, 27)));
 		this.add(createButton("Edit", "btnEdit", new Rectangle(485, 650, 55, 27)));
 		this.add(createButton("Create", "btnCreate", new Rectangle(600, 650, 55, 27)));
 		this.add(createButton("Back", "btnBack", new Rectangle(660, 650, 55, 27)));
-		this.add(createButton("Logout", "btnLogout", new Rectangle(750, 670, 55, 27)));*/
+		this.add(createButton("Logout", "btnLogout", new Rectangle(750, 670, 55, 27)));
+		
+		sF.setBounds(425,250,350,300);
+		sF.setBackground(Color.BLACK);
+		JPanel test = new JPanel();
+		test.setBounds(5, 5, 5, 5);
+		test.setLocation(5,5);
+		test.setBackground(Color.green);
+		sF.addElement(test);
+		this.add(sF);
 	}
 	
 	public Gui get_gui() {
@@ -103,8 +105,8 @@ public class CompetitionManagement extends JPanel {
 	
 	private void setFriends(){
 		this.friends.add("Henk");
-		/*this.friends.add("Seline");
-		this.friends.add("Thommes");*/
+		this.friends.add("Seline");
+		this.friends.add("Thommes");
 	}
 	
 	private JLabel createTitle(String text) {

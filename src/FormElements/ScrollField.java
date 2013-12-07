@@ -1,8 +1,12 @@
 package FormElements;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.Scrollbar;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
@@ -65,5 +69,11 @@ public class ScrollField extends JPanel {
         
         public void setScrollSpeeld(int scrollspeed) {
                 this.scrollSpeed = scrollspeed;
+        }
+        
+        public void removeAllElements(){
+                
+        this.cp.removeAll();
+                
         }
 }

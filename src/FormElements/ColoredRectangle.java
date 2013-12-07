@@ -17,7 +17,8 @@ public class ColoredRectangle extends JPanel {
 	
 	public void setBackground(Color bg, boolean doRepaint){
 		this.setBackground(bg);
-		if(doRepaint)
+		/*if(doRepaint){
 			this.repaint();
+		}*/
 	}
 }

@@ -1,5 +1,9 @@
 package Schermen;
 
-public class NewGame {
+import javax.swing.JPanel;
 
+public class NewGame extends JPanel {
+	public NewGame(){
+		
+	}
 }

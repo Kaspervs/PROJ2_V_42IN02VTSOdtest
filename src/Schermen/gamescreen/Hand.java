@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import Game.Tile;
 import Schermen.GameScreen;
 
 @SuppressWarnings("serial")

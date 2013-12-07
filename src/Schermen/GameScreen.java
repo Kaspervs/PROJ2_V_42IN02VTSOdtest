@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 import logics.ChatModel;
 import Main.Gui;
-import Schermen.chat.ChatScreen;
+import Schermen.chat.Chat;
 import Schermen.gamescreen.GameField;
 import Schermen.gamescreen.Hand;
 import Schermen.score.ScoreScreen;
@@ -18,7 +18,7 @@ import Schermen.turns.TurnScreen;
 public class GameScreen extends JPanel {
 	//View
 	private Gui _gui;
-	private ChatScreen chatScreen;
+	private Chat chatScreen;
 	private ChatModel chatModel;
 	private GameField gameField;
 	private ScoreScreen scoreScreen;
@@ -44,7 +44,7 @@ public class GameScreen extends JPanel {
 	}
 	
 	private JPanel initChat(){
-		chatScreen = new ChatScreen(this);
+		chatScreen = new Chat(this);
 
 		chatModel = new ChatModel();
 		chatModel.addObserver(chatScreen);

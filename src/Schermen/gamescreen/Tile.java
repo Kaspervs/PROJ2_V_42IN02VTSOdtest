@@ -1,4 +1,4 @@
-package Game;
+package Schermen.gamescreen;
 
 import java.awt.Color;
 import java.awt.Dimension;

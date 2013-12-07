@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import Game.Tile;
 import Main.DatabaseController;
 import Schermen.GameScreen;
 

@@ -10,21 +10,21 @@ import javax.swing.JLabel;
 
 
 @SuppressWarnings("serial")
-public class ChatBalloon extends JLabel {
+public class ChatMessage extends JLabel {
 	private StringBuilder sb = new StringBuilder();
 	
 	private int width = 260;
 	private Date _date = new Date();
 	private SimpleDateFormat ft = new SimpleDateFormat("HH:mm, dd/MM/yyyy");
 	
-	public ChatBalloon(String text, Color color, Font font){
+	public ChatMessage(String text, Color color, Font font){
 		setFont(font);
 		setFont(new Font(getFont().getName(), Font.TRUETYPE_FONT, 11));
 		setForeground(new Color(255,255,255));// font color
 		createBalloon(text, ft.format(_date), color, font.getName());
 		
 	}
-	public ChatBalloon(String text, String date, Color color, Font font){
+	public ChatMessage(String text, String date, Color color, Font font){
 		setFont(font);
 		setFont(new Font(getFont().getName(), Font.TRUETYPE_FONT, 11));
 		setForeground(new Color(255,255,255));// font color

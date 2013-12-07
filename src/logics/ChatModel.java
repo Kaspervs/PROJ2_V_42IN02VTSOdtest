@@ -20,7 +20,7 @@ import javax.swing.Timer;
 
 import Main.DatabaseController;
 import Schermen.ObserverSelectgame;
-import Schermen.chat.ChatScreen;
+import Schermen.chat.Chat;
 
 public class ChatModel extends Observable {
 	//Model

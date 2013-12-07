@@ -38,7 +38,7 @@ import Main.FontController;
 
 
 @SuppressWarnings("serial")
-public class ChatScreen extends JPanel implements Observer{
+public class Chat extends JPanel implements Observer{
 	//View
 	private GameScreen _parent;
 	private Rectangle bounds = new Rectangle(1000, 184, 260, 600);
@@ -47,7 +47,7 @@ public class ChatScreen extends JPanel implements Observer{
 
 	private JScrollPane sp;
 	private JPanel  textArea;
-	private ArrayList<ChatBalloon> chatBalloons = new ArrayList<ChatBalloon>();
+	private ArrayList<ChatMessage> chatBalloons = new ArrayList<ChatMessage>();
 	
 	private Color color1 = new Color(38,115,236);
 	private	Color color2 = new Color(31,174,255);
@@ -59,7 +59,7 @@ public class ChatScreen extends JPanel implements Observer{
 	
 	
 	
-	public ChatScreen(GameScreen p){
+	public Chat(GameScreen p){
 		this._parent = p;
 		this.segoeUI_sb = FontController.getInstance().getFont("seguisb");
 		
@@ -103,7 +103,7 @@ public class ChatScreen extends JPanel implements Observer{
 		
 		textArea.removeAll();
 		
-		chatBalloons = new ArrayList<ChatBalloon>();
+		chatBalloons = new ArrayList<ChatMessage>();
 	}
 	
 	private JScrollPane createScrollPane() {
@@ -142,7 +142,7 @@ public class ChatScreen extends JPanel implements Observer{
 	
 	private void createTextBalloon(String txt, Color color){
 		//create new Textballoon
-		ChatBalloon cb = new ChatBalloon(txt, color, segoeUI_sb);
+		ChatMessage cb = new ChatMessage(txt, color, segoeUI_sb);
 		chatBalloons.add(cb);
 		
 		textArea.add(cb);
@@ -153,7 +153,7 @@ public class ChatScreen extends JPanel implements Observer{
 	
 	private void createTextBalloon(String txt, Color color, String date){
 		//create new Textballoon
-		ChatBalloon cb = new ChatBalloon(txt, date, color, segoeUI_sb);
+		ChatMessage cb = new ChatMessage(txt, date, color, segoeUI_sb);
 		chatBalloons.add(cb);
 		
 		textArea.add(cb);

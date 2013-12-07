@@ -12,6 +12,7 @@ import javax.swing.SwingUtilities;
 import Main.DatabaseController;
 import Schermen.Login;
 import Schermen.ObserverSelectgame;
+import Schermen.Register;
 
 public class LoginLogics implements ActionListener{
 	private Login l;
@@ -20,9 +21,9 @@ public class LoginLogics implements ActionListener{
 		this.l = l;
 	}
 	
-	public void doLogin() {
+/*	public void doLogin() {
 		
-	}
+	}*/
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -35,7 +36,7 @@ public class LoginLogics implements ActionListener{
 		 * Login code
 		 */
 			case "loginBtn":
-				//Login verrifieren
+				
 				ResultSet result = DatabaseController.getInstance().runQuery("SELECT * FROM account WHERE naam='"+l.getUsernameFieldText()+"' AND wachtwoord='"+l.getPasswordFieldText()+"'");
 				try {
 					boolean loggedIn = false;
@@ -53,6 +54,9 @@ public class LoginLogics implements ActionListener{
 					e1.printStackTrace();
 				}
 
+				break;
+			case "createAccBtn":
+				this.l.getGui().changeScreen(new Register(this.l.getGui()));
 				break;
 		}
 	}

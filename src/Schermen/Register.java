@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
-
 import logics.RegisterLogics;
 import FormElements.MyButton;
 import FormElements.PasswordFieldSL;
@@ -36,7 +35,7 @@ public class Register extends JPanel {
 		password = createPasswordField();
 		this.add(username);
 		this.add(password);
-		this.add(createBackBtn());
+		this.add(backBtn());
 		this.add(createAccBtn());
 	}
 	
@@ -63,17 +62,17 @@ public class Register extends JPanel {
 		createAccBtn.setFont(new Font(createAccBtn.getFont().getName(), Font.BOLD, 12));
 		createAccBtn.setName("createAccBtn");
 		createAccBtn.addActionListener(logics);
-		
 		return createAccBtn;
 	}
 	
-	private MyButton createBackBtn(){
-		MyButton createBackBtn = new MyButton("Back");
-		createBackBtn.setBounds(538, 292, 101, 27);
-		createBackBtn.setFont(_gui.seguisb());
-		createBackBtn.setFont(new Font(createBackBtn.getFont().getName(), Font.BOLD, 12));
-		//createBackBtn.addActionListener(logics);
-		return createBackBtn;
+	private MyButton backBtn(){
+		MyButton backBtn = new MyButton("Back");
+		backBtn.setBounds(538, 292, 101, 27);
+		backBtn.setFont(_gui.seguisb());
+		backBtn.setFont(new Font(backBtn.getFont().getName(), Font.BOLD, 12));
+		backBtn.setName("backBtn");
+		backBtn.addActionListener(logics);
+		return backBtn;
 	}
 	
 	private JPasswordField createPasswordField() {

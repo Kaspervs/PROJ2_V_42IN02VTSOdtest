@@ -70,7 +70,8 @@ public class Login extends JPanel {
 		createAccBtn.setBounds(538, 292, 101, 27);
 		createAccBtn.setFont(_gui.seguisb());
 		createAccBtn.setFont(new Font(createAccBtn.getFont().getName(), Font.BOLD, 12));
-		//TODO add click listener
+		createAccBtn.setName("createAccBtn");
+		createAccBtn.addActionListener(logics);
 		return createAccBtn;
 	}
 	

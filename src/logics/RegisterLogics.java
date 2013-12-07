@@ -18,47 +18,44 @@ import Schermen.Register;
 public class RegisterLogics implements ActionListener{
 	private Register r;
 	
-	
-	
-	
 	public RegisterLogics(Register r) {
 		this.r = r;
-	}
-
-	public void doRegister() {
-		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton source = (JButton) e.getSource(); 
-		JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(source);
-		
 		
 		switch (source.getName()) {
-		/**
-		 * Login code
-		 */
 			case "createAccBtn":
 				ResultSet result = DatabaseController.getInstance().runQuery("SELECT * FROM account WHERE naam='"+r.getUsernameFieldText()+"'");
-			
 			try {
 				if (!result.next() ) {
-					DatabaseController.getInstance().insertQuery("INSERT INTO account (naam,wachtwoord) VALUES ('"+r.getUsernameFieldText()+"','"+r.getPasswordFieldText()+"')");
-					
-					this.r.getGui().showMessage("Account created, you can log in now.");
-					this.r.getGui().changeScreen(new Login(this.r.getGui()));
+					if (r.getUsernameFieldText() != null) {
+						if (r.getPasswordFieldText() != null){
+							DatabaseController.getInstance().insertQuery("INSERT INTO account (naam,wachtwoord) VALUES ('"+r.getUsernameFieldText()+"','"+r.getPasswordFieldText()+"')");
+							this.r.getGui().showMessage("Account created, you can log in now.");
+							this.r.getGui().changeScreen(new Login(this.r.getGui()));
+						}
+						else
+							this.r.getGui().showMessage("Password cannot be empty.");
+					}
+					else
+						this.r.getGui().showMessage("Username cannot be empty");
 				}
 				else
 					this.r.getGui().showMessage("The username already exists");
-			} catch (SQLException e1) {
+			} 
+				catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
-						
-				
-
+			}						
 				break;
+				
+			case "backBtn":
+				this.r.getGui().changeScreen(new Login(this.r.getGui()));
+				break;
+
 		}
 	}
 }

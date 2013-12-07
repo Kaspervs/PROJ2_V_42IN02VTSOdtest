@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -15,6 +16,7 @@ import FormElements.ColoredRectangle;
 import FormElements.ImageLabel;
 import FormElements.MyButton;
 import FormElements.ScrollField;
+import Main.FontController;
 import Main.Gui;
 
 public class CompetitionManagement extends JPanel {
@@ -28,10 +30,45 @@ public class CompetitionManagement extends JPanel {
 	private ImageIcon icon;
 	private CompetitionLogic competitionLogics;
 	private ArrayList<ImageLabel> alImageLabel;
-	private ScrollField sF = new ScrollField(new Dimension(500,500));
+	//private ScrollField sF = new ScrollField(new Dimension(500,500));
+	private ScrollField sf = new ScrollField(new Dimension(500,500));
 
 	public CompetitionManagement(Gui gui){
-		this.competitionLogics = new CompetitionLogic(this);
+		sf = new ScrollField(new Dimension(600,400));
+        sf.setBounds(300,220,600,400);
+      //create word panel                        
+        ColoredRectangle wordPanel = new ColoredRectangle(new Rectangle(sf.getWidth(),50), Color.gray);
+        //create word label
+        JLabel wordLabel = new JLabel("dsf");
+        wordLabel.setForeground(Color.white);
+        wordLabel.setBounds(0,0,550,50);
+        wordLabel.setFont(FontController.getInstance().getFont("segoeuil"));
+        wordLabel.setFont(new Font(wordLabel.getFont().getName(), Font.BOLD, 20));
+        //add label to panel
+        wordPanel.add(wordLabel);
+        
+        //create edit buttonimage
+        ImageIcon editLogo = new ImageIcon(getClass().getResource("/Assets/Images/edit.png"));
+        JButton editButton = new JButton(editLogo);
+        editButton.setBackground(Color.gray);
+        editButton.setBounds(wordPanel.getWidth()-(editLogo.getIconWidth()+10),wordPanel.getHeight() - 15 - editLogo.getIconHeight(), editLogo.getIconWidth()+2, editLogo.getIconHeight()+2);
+        editButton.setName("btnWordOutList#"+"dsf");
+        //addclickevent
+        //editButton.addActionListener(logics);
+        
+        
+        //add editlabel to wordpanel
+        wordPanel.add(editButton);
+        
+        wordPanel.setLayout(null);
+        //add wordpanel to scollfield
+        sf.addElement(wordPanel);  
+        
+        this.add(sf);
+        
+        
+        
+		/*this.competitionLogics = new CompetitionLogic(this);
 		alImageLabel = new ArrayList<ImageLabel>();
 		this._gui = gui;
 		this.setBackground(null);
@@ -42,7 +79,7 @@ public class CompetitionManagement extends JPanel {
 
 		//Create layout
 		this.add(createTitle("New Game"));
-		createFriendsList(this,"Friends");
+		createFriendsList(this,"Friends");*/
 		//int i = 0;
 		/*for(String friend : friends){
 			JPanel field = new JPanel();
@@ -58,7 +95,7 @@ public class CompetitionManagement extends JPanel {
 			//i += 65;
 		}
 		this.add(sF);*/
-		this.add(createButton("Add", "btnAdd", new Rectangle(425, 650, 55, 27)));
+		/*this.add(createButton("Add", "btnAdd", new Rectangle(425, 650, 55, 27)));
 		this.add(createButton("Edit", "btnEdit", new Rectangle(485, 650, 55, 27)));
 		this.add(createButton("Create", "btnCreate", new Rectangle(600, 650, 55, 27)));
 		this.add(createButton("Back", "btnBack", new Rectangle(660, 650, 55, 27)));
@@ -71,7 +108,7 @@ public class CompetitionManagement extends JPanel {
 		test.setLocation(5,5);
 		test.setBackground(Color.green);
 		sF.addElement(test);
-		this.add(sF);
+		this.add(sF);*/
 	}
 	
 	public Gui get_gui() {

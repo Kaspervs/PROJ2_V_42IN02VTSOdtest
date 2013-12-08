@@ -1,6 +1,7 @@
 package utils;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -103,6 +104,14 @@ public abstract class ImageTool {
         // Convert to Image and return it
         image = toImage(bimg);
         return image;
+    }
+    
+    public static ImageIcon resize(ImageIcon icon, Dimension d){
+    		Image image = icon.getImage(); // transform it 
+            Image newimg = image.getScaledInstance(d.width, d.height,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+            icon = new ImageIcon(newimg);  // transform it back
+            
+            return icon;
     }
 
     /**

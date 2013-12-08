@@ -28,6 +28,7 @@ public class GameScreen extends JPanel {
 	private JLabel backButton;
 	private ImageIcon backBtnImage = new ImageIcon(GameScreen.class.getResource("/Assets/Images/backBtn.png"));
 	private TileDnDController tileController;
+	
 	public GameScreen(Gui g){
 		this._gui = g;
 		this.setBounds(0, 0, _gui.getWidth(), _gui.getHeight());
@@ -110,5 +111,8 @@ public class GameScreen extends JPanel {
 	public Gui getGui(){
 		return this._gui;
 	}
-	//TODO add chat here
+	
+	public GameField getGameField(){
+		return this.gameField;
+	}
 }

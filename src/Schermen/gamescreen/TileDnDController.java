@@ -1,5 +1,6 @@
 package Schermen.gamescreen;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -17,6 +18,9 @@ public class TileDnDController extends JPanel {
 	private GameScreen _parent;
 	private static TileDnDController INSTANCE = null;
 	private Tile dragTile;
+	private Tile dropTile;
+	private GameField gameField;
+	
 	
 	protected TileDnDController() {}
 	
@@ -29,6 +33,7 @@ public class TileDnDController extends JPanel {
 	
 	public void initTileController(GameScreen p){
 		this._parent = p;
+		this.gameField = p.getGameField();
 		this.setOpaque(false);
 		this.setBounds(_parent.getBounds());
 		this.setLayout(null);
@@ -40,30 +45,25 @@ public class TileDnDController extends JPanel {
 
 	private void addMouseHandler(){
 		
-		/*SwingUtilities.invokeLater(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable() {
 			
 			@Override
-			public void run() {*/
+			public void run() {
 				INSTANCE.addMouseMotionListener(new MouseMotionAdapter() {
 					@Override
 					public void mouseMoved( final MouseEvent e) {
-						Thread thread = new Thread( new Runnable() {
+						if(dragTile == null) return;
+						if(dragTile.isDrag() == true){
 							
-							@Override
-							public void run() {
-								if(dragTile == null) return;
-								if(dragTile.isDrag() == true){
-									
-									dragTile.setLocation(getMiddlePoint(e.getPoint()));
-								}
-							}
-						});
-						thread.start();
+							dragTile.setLocation(getMiddlePoint(e.getPoint()));
+							dropTile = gameField.getClosestTile(e.getPoint(), e.getLocationOnScreen());
+							
+						}
+					
 					}
 				});
-				
-			/*}
-		});*/
+			}
+		});
 	}
 	
 	private Point getMiddlePoint(Point p){

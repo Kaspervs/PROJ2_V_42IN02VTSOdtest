@@ -1,6 +1,7 @@
 package Schermen.gamescreen;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -54,5 +55,30 @@ public class GameField extends JPanel {
 			default:
 				return new Color(44,47,54);
 		}
+	}
+	
+	public Tile getClosestTile(Point p2, Point p3){
+		Tile rtn = null;
+		System.out.println("start getClosest ");
+		for(int i=0; i< gameTiles.size(); i++)
+		{
+			Tile a = gameTiles.get(i);
+			// normalize the position 
+			Point p1 = normalizePoint(a.getLocation(), a);
+			
+			if(p1.x >= p2.x && p1.x <= p2.x + a.getWidth() 
+			&& p1.y >= p2.y && p1.y <= p2.y + a.getHeight())
+			{	
+				rtn = a;
+				rtn.setBackground(Color.red);
+			
+				return rtn;
+			}
+		}
+		return rtn;
+	}
+	
+	private Point normalizePoint(Point p, Tile t){
+		return new Point (p.x + this.getX() + t.getWidth(), p.y + this.getY() + t.getHeight());
 	}
 }

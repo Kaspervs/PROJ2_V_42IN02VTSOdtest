@@ -12,6 +12,7 @@ import Main.Gui;
 import Schermen.chat.Chat;
 import Schermen.gamescreen.GameField;
 import Schermen.gamescreen.Hand;
+import Schermen.gamescreen.TileDnDController;
 import Schermen.score.ScoreScreen;
 import Schermen.turns.TurnScreen;
 
@@ -26,15 +27,17 @@ public class GameScreen extends JPanel {
 	private Hand gameHand;
 	private JLabel backButton;
 	private ImageIcon backBtnImage = new ImageIcon(GameScreen.class.getResource("/Assets/Images/backBtn.png"));
-	
+	private TileDnDController tileController;
 	public GameScreen(Gui g){
 		this._gui = g;
 		this.setBounds(0, 0, _gui.getWidth(), _gui.getHeight());
+		this.setLayout(null);
 		this.setBackground(null);
 		//this.add(initChat());
 		this.add(initScoreScreen());
 		this.add(initTurnScreen());
 		this.add(addBackButton());
+		
 		initGameField();
 	}
 	
@@ -85,6 +88,8 @@ public class GameScreen extends JPanel {
 	}
 	
 	
+	
+	
 	private void initGameField(){
 		gameField = new GameField(this);
 		gameField.setBounds(364, 80, 560, 560);
@@ -92,8 +97,14 @@ public class GameScreen extends JPanel {
 		gameHand = new Hand(this);
 		gameHand.setBounds(509, 659, 256, 34); 
 		
-		this.add(gameField);
+		tileController = TileDnDController.getInstance();
+		tileController.initTileController(this);
+
 		this.add(gameHand);
+
+		this.add(tileController);
+
+		this.add(gameField);
 	}
 	
 	public Gui getGui(){

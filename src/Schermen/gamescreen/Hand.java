@@ -25,6 +25,7 @@ public class Hand extends JPanel {
 		for(int i = 0; i < 7; i++) {
 			Tile temp = new Tile(new Color(243,240,235));
 			temp.setBounds((int) (37 * i),0,34,34);
+			temp.addMouseListener(temp);
 			handTiles.add(temp);
 			this.add(temp);
 		}

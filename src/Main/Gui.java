@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -14,10 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Schermen.GameScreen;
 import Schermen.Login;
-import Schermen.ObserverSelectgame;
-import Schermen.Register;
+import Schermen.PlayerManagement;
 
 
 @SuppressWarnings("serial")
@@ -70,7 +67,7 @@ public class Gui extends JFrame {
 		//jpanel.add(new Register(this));
 		//jpanel.add(new ObserverSelectgame(this));
 		//jpanel.add(new GameScreen(this));
-		
+		//jpanel.add(new PlayerManagement(this));
 		this.repaint();
 	}
 	

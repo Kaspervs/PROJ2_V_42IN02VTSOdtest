@@ -3,6 +3,7 @@ package Schermen;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
@@ -20,13 +21,21 @@ public class PlayerManagement extends JPanel {
 		this._gui = gui;
 		this.setBackground(null);
 		this.setBounds(0, 0, gui.getWidth(), gui.getHeight());
-		
-	
+
+		this.add(backButton());
+		this.add(createSaveButton());
+		this.add(createPasswordAField());
+		this.add(createPasswordBField());
+		this.add(createPasswordCField());
+		this.add(PAFieldText());
+		this.add(PBFieldText());
+		this.add(PCFieldText());
+		this.add(createPMText());
 	}
 	
 	private MyButton backButton(){
 		MyButton backBtn = new MyButton("Back");
-		backBtn.setBounds(693, 292, 101, 27);
+		backBtn.setBounds(420, 320, 101, 27);
 		backBtn.setFont(_gui.seguisb());
 		backBtn.setFont(new Font(backBtn.getFont().getName(), Font.BOLD, 12));
 		backBtn.setName("backBtn");
@@ -36,7 +45,7 @@ public class PlayerManagement extends JPanel {
 	
 	private MyButton createSaveButton(){
 		MyButton saveAccBtn = new MyButton("Save Data");
-		saveAccBtn.setBounds(538, 292, 101, 27);
+		saveAccBtn.setBounds(693, 320, 101, 27);
 		saveAccBtn.setFont(_gui.seguisb());
 		saveAccBtn.setFont(new Font(saveAccBtn.getFont().getName(), Font.BOLD, 12));
 		saveAccBtn.setName("saveAccBtn");
@@ -45,8 +54,8 @@ public class PlayerManagement extends JPanel {
 	}
 	
 	private JPasswordField createPasswordAField() {
-		JPasswordField passwordAField = new PasswordFieldSL("Password");
-		passwordAField.setBounds(536, 220, 260, 30);
+		JPasswordField passwordAField = new PasswordFieldSL("");
+		passwordAField.setBounds(536, 200, 260, 30);
 		passwordAField.setFont(_gui.seguisb());
 		passwordAField.setBackground(Color.black);
 		passwordAField.setFont(new Font(passwordAField.getFont().getName(), Font.BOLD, 12));
@@ -54,8 +63,8 @@ public class PlayerManagement extends JPanel {
 	}
 	
 	private JPasswordField createPasswordBField() {
-		JPasswordField passwordBField = new PasswordFieldSL("Password");
-		passwordBField.setBounds(536, 220, 260, 30);
+		JPasswordField passwordBField = new PasswordFieldSL("");
+		passwordBField.setBounds(536, 235, 260, 30);
 		passwordBField.setFont(_gui.seguisb());
 		passwordBField.setBackground(Color.black);
 		passwordBField.setFont(new Font(passwordBField.getFont().getName(), Font.BOLD, 12));
@@ -63,12 +72,48 @@ public class PlayerManagement extends JPanel {
 	}
 	
 	private JPasswordField createPasswordCField() {
-		JPasswordField passwordCField = new PasswordFieldSL("Confirm assword");
-		passwordCField.setBounds(536, 220, 260, 30);
+		JPasswordField passwordCField = new PasswordFieldSL("");
+		passwordCField.setBounds(536, 270, 260, 30);
 		passwordCField.setFont(_gui.seguisb());
 		passwordCField.setBackground(Color.black);
 		passwordCField.setFont(new Font(passwordCField.getFont().getName(), Font.BOLD, 12));
 		return passwordCField;
 	}
+	
+	private JLabel PAFieldText(){
+		JLabel PAfield = new JLabel("Current Password");
+		PAfield.setForeground(Color.white);
+		PAfield.setBounds(420,190,268,55);
+		PAfield.setFont(_gui.segoeuil());
+		PAfield.setFont(new Font(PAfield.getFont().getName(), Font.PLAIN, 12));
+		return PAfield;
+	}
+	private JLabel PBFieldText(){
+		JLabel PBfield = new JLabel("New Password");
+		PBfield.setForeground(Color.white);
+		PBfield.setBounds(420,225,268,55);
+		PBfield.setFont(_gui.segoeuil());
+		PBfield.setFont(new Font(PBfield.getFont().getName(), Font.PLAIN, 12));
+		return PBfield;
+	}
+	private JLabel PCFieldText(){
+		JLabel PCfield = new JLabel("Confirm Password");
+		PCfield.setForeground(Color.white);
+		PCfield.setBounds(420,260,268,55);
+		PCfield.setFont(_gui.segoeuil());
+		PCfield.setFont(new Font(PCfield.getFont().getName(), Font.PLAIN, 12));
+		return PCfield;
+	}
+	
+	
+	private JLabel createPMText() {
+		JLabel managementText = new JLabel("Player Management");
+		managementText.setForeground(Color.white);
+		managementText.setBounds(420,120,500,55);
+		managementText.setFont(_gui.segoeuil());
+		managementText.setFont(new Font(managementText.getFont().getName(), Font.PLAIN, 42));
+		return managementText;
+	}
+
 
 }

@@ -76,7 +76,7 @@ public class PlayerManagement extends JPanel {
 		backBtn.setFont(_gui.seguisb());
 		backBtn.setFont(new Font(backBtn.getFont().getName(), Font.BOLD, 12));
 		backBtn.setName("backBtn");
-		//backBtn.addActionListener(logics);
+		backBtn.addActionListener(logics);
 		return backBtn;
 	}
 	
@@ -86,7 +86,7 @@ public class PlayerManagement extends JPanel {
 		saveAccBtn.setFont(_gui.seguisb());
 		saveAccBtn.setFont(new Font(saveAccBtn.getFont().getName(), Font.BOLD, 12));
 		saveAccBtn.setName("saveAccBtn");
-		//saveAccBtn.addActionListener(logics);
+		saveAccBtn.addActionListener(logics);
 		return saveAccBtn;
 	}
 	

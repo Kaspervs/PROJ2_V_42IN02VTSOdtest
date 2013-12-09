@@ -159,6 +159,7 @@ public class ManageWords extends JPanel {
 					if(result.next()==false)
 					{
 						this.getGui().showMessage("No words found", "Alert");
+						refreshScrollObjects("SELECT woord FROM woordenboek order by woord asc");
 					}
 					while (result.next())
 					{

@@ -36,15 +36,15 @@ public class PlayerManagementLogics implements ActionListener {
 				
 				ResultSet result = DatabaseController.getInstance().runQuery("SELECT * FROM account WHERE wachtwoord='"+A.getPasswordA()+"'");
 				try {
-					boolean loggedIn = false;
+					boolean checkPass = false;
 					while(result.next()) {
-						loggedIn = true;
+						checkPass = true;
 					}
 					
-					if(loggedIn)
-						this.A.getGui().changeScreen(new ObserverSelectgame(this.A.getGui()));
+					if(checkPass)
+						this.A.getGui().changeScreen(new PlayerManagement(this.A.getGui()));
 					else
-						this.A.getGui().showMessage("The username and password you entered don't match to any known account.", "Login Incorrect");
+						this.A.getGui().showMessage("Your passwords are not in sync, so it has not been changed.", "Password(s) Incorrect");
 						
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -53,7 +53,7 @@ public class PlayerManagementLogics implements ActionListener {
 
 				break;
 			case "backBtn":
-				this.A.getGui().changeScreen(new Register(this.A.getGui()));
+				this.A.getGui().changeScreen(new PlayerManagement(this.A.getGui()));
 				break;
 		}
 	}

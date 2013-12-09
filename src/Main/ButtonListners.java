@@ -6,6 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import Schermen.Login;
+
 
 public class ButtonListners implements ActionListener  {
 	private Main main;
@@ -28,7 +30,9 @@ public class ButtonListners implements ActionListener  {
 				System.exit(0);
 				break;
 			case "Logout":
-				this.main.getGUI().showMessage("Dit is een test bericht die eigenlijk veel te lang is voor een logout message, maar puur bedoelt is om wordwrap te testen!", "Mededeling");
+				this.main.getGUI().showMessage("Logged out", "Logged out");
+				this.main.getGUI().changeScreen(new Login(this.main.getGUI()));
+
 				break;
 		}
 	}

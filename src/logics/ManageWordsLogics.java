@@ -41,6 +41,10 @@ public class ManageWordsLogics implements ActionListener{
 			case "btnDelete":
 				deleteWord();
 				break;
+			case "btnSearch":
+				
+				searchWord();
+				break;
 			default:
 				editWord(source.getName());
 				break;
@@ -48,6 +52,16 @@ public class ManageWordsLogics implements ActionListener{
 		
 		}
 				
+	}
+	
+	private void searchWord(){
+		//get word from textfield
+		
+		String searchWord = _manageWords.getStringSearchField();
+	
+		_manageWords.refreshScrollObjects("SELECT woord FROM woordenboek WHERE woord like '%"+searchWord+ "%'");
+			
+			
 	}
 	
 	private void deleteWord(){
@@ -67,7 +81,7 @@ public class ManageWordsLogics implements ActionListener{
 				DatabaseController.getInstance().setPreparedStatement(statement);
 				DatabaseController.getInstance().runPreparedStatement();
 				this._manageWords.getGui().showMessage("Succefully deleted: "+ oldWord, "Succeded");
-				_manageWords.refreshScrollObjects();
+				_manageWords.refreshScrollObjects("SELECT woord FROM woordenboek order by woord asc");
 				oldWord="";
 				_manageWords.setEditWordTextField("");
 			}
@@ -120,7 +134,7 @@ public class ManageWordsLogics implements ActionListener{
 					_manageWords.setEditWordTextField("");
 					//Show succes message
 					this._manageWords.getGui().showMessage("Word succesfully edited.", "Succeded");
-					_manageWords.refreshScrollObjects();
+					_manageWords.refreshScrollObjects("SELECT woord FROM woordenboek order by woord asc");
 					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -209,7 +223,7 @@ public class ManageWordsLogics implements ActionListener{
 						//empty textfield
 						_manageWords.emptyText(); 
 						//wordlist refreshen
-						_manageWords.refreshScrollObjects();
+						_manageWords.refreshScrollObjects("SELECT woord FROM woordenboek order by woord asc");
 					}
 					else
 					{

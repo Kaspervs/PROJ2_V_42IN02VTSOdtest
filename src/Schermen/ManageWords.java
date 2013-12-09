@@ -71,7 +71,7 @@ public class ManageWords extends JPanel {
 				this.add(tfSearchField);
 				
 				//create button search
-				ImageIcon editLogo = new ImageIcon(getClass().getResource("/Assets/Images/edit.png")); //hier moet nog ander plaatje in
+				ImageIcon editLogo = new ImageIcon(getClass().getResource("/Assets/Images/search.png"));
 				JButton searchButton = new JButton(editLogo);
 				searchButton.setBackground(Color.WHITE);
 				searchButton.setBounds(870, 140, 30, 30);
@@ -140,19 +140,26 @@ public class ManageWords extends JPanel {
 				
 				
 				
-			FillWordList();
+			FillWordList("SELECT woord FROM woordenboek order by woord asc");
 		
 	}
 	
-	public void FillWordList(){
+	public String getStringSearchField(){
+		return tfSearchField.getText();
+	}
+	
+	public void FillWordList(String query){
 				
-				
+		
 				
 				//load words from database
-				ResultSet result = DatabaseController.getInstance().runQuery("SELECT woord FROM woordenboek order by woord asc");
+				ResultSet result = DatabaseController.getInstance().runQuery(query);
 				try {
 								
-					
+					if(result.next()==false)
+					{
+						this.getGui().showMessage("No words found", "Alert");
+					}
 					while (result.next())
 					{
 						//create word panel			
@@ -188,7 +195,9 @@ public class ManageWords extends JPanel {
 				}
 				catch (Exception e1) {
 					// TODO Auto-generated catch block
+					
 					e1.printStackTrace();
+					
 				}
 
 			
@@ -199,11 +208,11 @@ public class ManageWords extends JPanel {
 		
 	}
 	
-	public void refreshScrollObjects(){
+	public void refreshScrollObjects(String query){
 		//remove all elements
 		sf.removeAllElements();
 		//refill wordlist
-		FillWordList();
+		FillWordList(query);
 		
 	}
 	

@@ -9,13 +9,16 @@ import javax.swing.SwingUtilities;
 import Schermen.CritisizeWords;
 import Schermen.ManageWords;
 import Schermen.ObserverSelectgame;
+import Schermen.WordJudgement;
 
 
 public class ButtonListners implements ActionListener  {
 	private Main main;
 	
+	
 	public ButtonListners(Main main) {
 		this.main = main;
+		
 	}
 
 	@Override
@@ -27,6 +30,7 @@ public class ButtonListners implements ActionListener  {
 		switch (source.getName()) {
 			case "manageWordsbtn":
 				this.main.getGUI().changeScreen(new ManageWords(this.main.getGUI()));
+				
 				break;
 			case "critisizeWordsbtn":
 				this.main.getGUI().changeScreen(new CritisizeWords(this.main.getGUI()));

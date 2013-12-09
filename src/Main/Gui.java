@@ -29,45 +29,48 @@ public class Gui extends JFrame {
 	public Gui(Main main) {
 		this.main = main;
 		
-		//Load fonts
-		FontController.getInstance().InitFonts();
-		
 		//Dit hide de frame border
 		setUndecorated(true);	
-		
-		jpanel.setSize(new Dimension(1280,720));
-		jpanel.setBackground(null);
-		
-		this.setTitle("Wordfeud");
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setSize(new Dimension(1280,720));
-		this.setResizable(false);
-		this.setContentPane(jpanel);
-		this.setVisible(true);
-		this.setLayout(null);
-		this.setBackground(new Color(29,29,29));
-		//Center screen
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(
-				new Point(
-						(int) ((screenSize.width  - this.getSize().getWidth()) / 2),
-						(int) ((screenSize.height - this.getSize().getHeight()) / 2)
-				)
-		);	
 		this.setupForm();
 		
 		//Create loginscreen
 		//jpanel.add(new Login(this));
 		//jpanel.add(new Register(this));
 		//jpanel.add(new ObserverSelectgame(this));
-		jpanel.add(new GameScreen(this));
+		//jpanel.add(new GameScreen(this));
 		//jpanel.add(new WordJudgement(this));
-		//jpanel.add(new ManageWords(this));
+		jpanel.add(new ManageWords(this));
+	
 		
 		this.repaint();
 	}
 	
+	
+	
 	private void setupForm() {
+		//Load fonts
+				FontController.getInstance().InitFonts();
+				
+				jpanel.setSize(new Dimension(1280,720));
+				jpanel.setBackground(null);
+				
+				this.setTitle("Wordfeud");
+				this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				this.setSize(new Dimension(1280,720));
+				this.setResizable(false);
+				this.setContentPane(jpanel);
+				this.setVisible(true);
+				this.setLayout(null);
+				this.setBackground(new Color(29,29,29));
+				//Center screen
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+				this.setLocation(
+						new Point(
+								(int) ((screenSize.width  - this.getSize().getWidth()) / 2),
+								(int) ((screenSize.height - this.getSize().getHeight()) / 2)
+						)
+				);	
+				
 		//Load close button image icon
 		ImageIcon icon = new ImageIcon(getClass().getResource("/Assets/Images/close_small.png"));
 		JButton closebtn = new JButton("", icon);
@@ -89,6 +92,7 @@ public class Gui extends JFrame {
 		setupForm();
 		jpanel.add(content);
 		jpanel.repaint();
+		
 	}
 	
 	public Main getMain() {

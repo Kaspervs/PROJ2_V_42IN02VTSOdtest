@@ -81,7 +81,7 @@ public class PlayerManagement extends JPanel {
 	}
 	
 	private MyButton createSaveButton(){
-		MyButton saveAccBtn = new MyButton("Save Data");
+		MyButton saveAccBtn = new MyButton("Save Gegevens");
 		saveAccBtn.setBounds(693, 320, 101, 27);
 		saveAccBtn.setFont(_gui.seguisb());
 		saveAccBtn.setFont(new Font(saveAccBtn.getFont().getName(), Font.BOLD, 12));

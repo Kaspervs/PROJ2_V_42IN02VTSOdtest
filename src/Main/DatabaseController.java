@@ -55,16 +55,15 @@ public class DatabaseController {
 	   
 	   public PreparedStatement insertQuery(String statement){
 		    java.sql.PreparedStatement pstmt = null;
-
 		   try {
 			   pstmt = con.prepareStatement(statement);
 			   pstmt.executeUpdate();
 			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
 
 		   
 	   }

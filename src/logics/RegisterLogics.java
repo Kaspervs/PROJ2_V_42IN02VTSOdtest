@@ -31,9 +31,11 @@ public class RegisterLogics implements ActionListener{
 				ResultSet result = DatabaseController.getInstance().runQuery("SELECT * FROM account WHERE naam='"+r.getUsernameFieldText()+"'");
 			try {
 				if (!result.next() ) {
-					if (r.getUsernameFieldText() != null) {
-						if (r.getPasswordFieldText() != null){
+					if (r.getUsernameFieldText() != null && !r.getUsernameFieldText().isEmpty() ) {
+						if (r.getPasswordFieldText() != null && !r.getPasswordFieldText().isEmpty() ){
 							DatabaseController.getInstance().insertQuery("INSERT INTO account (naam,wachtwoord) VALUES ('"+r.getUsernameFieldText()+"','"+r.getPasswordFieldText()+"')");
+							DatabaseController.getInstance().insertQuery("INSERT INTO accountrol (account_naam,rol_type) VALUES ('"+r.getUsernameFieldText()+"','Player')");
+
 							this.r.getGui().showMessage("Account created, you can log in now.");
 							this.r.getGui().changeScreen(new Login(this.r.getGui()));
 						}

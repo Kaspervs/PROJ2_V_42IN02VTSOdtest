@@ -7,12 +7,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
+import logics.PlayerManagementLogics;
 import FormElements.MyButton;
 import FormElements.PasswordFieldSL;
 import Main.Gui;
 
 public class PlayerManagement extends JPanel {
 	private Gui _gui;
+	private PlayerManagementLogics logics = new PlayerManagementLogics(this);
 	JPasswordField PasswordA;
 	JPasswordField PasswordB;
 	JPasswordField PasswordC;
@@ -24,15 +26,50 @@ public class PlayerManagement extends JPanel {
 
 		this.add(backButton());
 		this.add(createSaveButton());
-		this.add(createPasswordAField());
-		this.add(createPasswordBField());
-		this.add(createPasswordCField());
+
+		PasswordA = createPasswordAField();
+		PasswordB = createPasswordBField();
+		PasswordC = createPasswordCField();
+		
+		this.add(PasswordA);
+		this.add(PasswordB);
+		this.add(PasswordC);
+		
 		this.add(PAFieldText());
 		this.add(PBFieldText());
 		this.add(PCFieldText());
 		this.add(createPMText());
 	}
 	
+	public Gui getGui() {
+		return this._gui;
+	}
+	  
+	
+	public JPasswordField getPasswordA() {
+		return PasswordA;
+	}
+
+	public void setPasswordA(JPasswordField passwordA) {
+		PasswordA = passwordA;
+	}
+
+	public JPasswordField getPasswordB() {
+		return PasswordB;
+	}
+
+	public void setPasswordB(JPasswordField passwordB) {
+		PasswordB = passwordB;
+	}
+
+	public JPasswordField getPasswordC() {
+		return PasswordC;
+	}
+
+	public void setPasswordC(JPasswordField passwordC) {
+		PasswordC = passwordC;
+	}
+
 	private MyButton backButton(){
 		MyButton backBtn = new MyButton("Back");
 		backBtn.setBounds(420, 320, 101, 27);
